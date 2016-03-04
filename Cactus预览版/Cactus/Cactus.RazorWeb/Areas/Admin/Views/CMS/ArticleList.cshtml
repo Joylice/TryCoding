@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<script type="text/javascript">
+    $(function () {
+        searchForm("");
+        //$('.down-content form button').bind("click", function () {
+        //    console.log("where:"+$('.down-content form input[type=text]').val())
+        //    searchForm($('.down-content form input[type=text]').val())
+        //})
+        $('#articlelist input[name=aid_g][type=checkbox]').bind("click", function () {
+            $('#articlelist input[name=aid][type=checkbox]').each(function () {
+                $(this).attr("checked", !($(this).is(':checked')))
+            })
+        })
+    })
+    function searchForm(where) {
+        PageTable(10, 1, "#articlelist", "/Admin/CMS/ArticleList", where,
+                    [{
+                        field: "Article_Id", formatter: function (val, rec) {
+                            return "<input name=\"aid\" type=\"checkbox\" value=\""+val+"\">";
+                        }
+                    },
+                    { field: "Article_Id" },
+                    { field: "Title" },
+                    { field: "AddTime" },
+                    {
+                        field: "Article_Id", formatter: function (val, rec) {
+                            return "<a href=\"javascript:;\" onclick=\"loadContent('/Admin/CMS/ArticleUpdate/" + val + "',true)\">修改</a>";
+                        }
+                    }])
+    }
+
+</script>
+<div style="margin: 5px 0px 5px 0px;">
+    <a href="javascript:;" class="button-success pure-button"
+        data-ajax="true"
+        data-ajax-before="SetDel"
+        data-ajax-url="/CMS/ArticleDelete"
+        data-ajax-loading="#load"
+        data-ajax-confirm="确定删除"
+        data-ajax-type="json"
+        data-ajax-success="if(data.pass){loadContent(data.url);}else{alert(data.error);}">删除</a>
+</div>
+<table id="articlelist" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th><input name="aid_g" type="checkbox" title="全选/反选"></th>
+            <th>#</th>
+            <th>文章名</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>

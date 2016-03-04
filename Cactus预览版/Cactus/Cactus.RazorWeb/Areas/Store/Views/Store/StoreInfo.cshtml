@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+    var StoreUser = ViewData["StoreUser"] as Cactus.Model.Store.Store;
+    }
+
+<div style="margin: 5px 0px 5px 0px;">
+    <a href="javascript:;" class="pure-button pure-button-primary" 
+        onclick="loadContent('',true)">修改资料</a>
+</div>
+<table class="pure-table pure-table-bordered">
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>@(StoreUser.Store_Id)</td>
+        </tr>
+        <tr>
+            <th>头像</th>
+            <td>
+                <img src="@(StoreUser.PicUrl)" alt="头像" width="100px" height="100px" />
+            </td>
+        </tr>
+        <tr>
+            <th>账户名</th>
+            <td>@(StoreUser.Account)</td>
+        </tr>
+
+        <tr>
+            <th>商店名</th>
+            <td>@(StoreUser.Name)</td>
+        </tr>
+        <tr>
+            <th>创建时间</th>
+            <td>@(StoreUser.AddTime)</td>
+        </tr>
+        <tr>
+            <th>描述</th>
+            <td>@(StoreUser.Des)</td>
+        </tr>
+       
+    </tbody>
+</table>

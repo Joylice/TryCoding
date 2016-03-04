@@ -1,0 +1,48 @@
+﻿@{
+    var LoginUser = ViewData["LoginUser"] as Cactus.Model.Sys.User;
+}
+
+@if(LoginUser.IsSuperUser){
+<!--管理栏 start-->
+<li class="pure-menu-heading head-tip"><i class="fa fa-tags"></i>控制面板</li>
+    <li class="pure-menu-item">
+        <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>用户管理</a>
+        <div style="display: none;" class="have-children">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-mode="" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/UserAdd" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large" ></i>添加用户</a></li>
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-mode="" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/UserIndex" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>用户列表</a></li>
+                </ul>
+
+        </div>
+    </li>
+    <li class="pure-menu-item">
+        <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>角色管理</a>
+        <div style="display: none;" class="have-children">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/RoleAdd" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>添加角色</a></li>
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/RoleIndex" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>角色列表</a></li>
+                </ul>
+
+        </div>
+    </li>
+    <li class="pure-menu-item">
+        <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>操作组管理</a>
+        <div style="display: none;" class="have-children">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link"  data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/ActionGroupAdd" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>添加操作组</a></li>
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link"  data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/ActionGroupIndex" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>操作组列表</a></li>
+                </ul>
+        </div>
+    </li>
+    <li class="pure-menu-item">
+        <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>命令管理</a>
+        <div style="display: none;" class="have-children">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/ActionAdd" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>添加命令</a></li>
+                <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/ActionIndex" data-ajax-loading="#load"  data-ajax-success="$('.down-content').unobtrusive('resetbind')"><i class="fa fa-th-large"></i>命令列表</a></li>
+                </ul>
+
+        </div>
+    </li>
+<!--管理栏 end-->
+}

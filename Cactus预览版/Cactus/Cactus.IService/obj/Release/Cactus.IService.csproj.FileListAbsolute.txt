@@ -1,0 +1,7 @@
+D:\vs2010Workspace\Cactus\Cactus.IService\bin\Release\Cactus.IService.dll
+D:\vs2010Workspace\Cactus\Cactus.IService\bin\Release\Cactus.IService.pdb
+D:\vs2010Workspace\Cactus\Cactus.IService\bin\Release\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.IService\bin\Release\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.IService\obj\Release\Cactus.IService.csprojResolveAssemblyReference.cache
+D:\vs2010Workspace\Cactus\Cactus.IService\obj\Release\Cactus.IService.dll
+D:\vs2010Workspace\Cactus\Cactus.IService\obj\Release\Cactus.IService.pdb

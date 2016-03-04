@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="css/public.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link href="pure0.6.0/grids-responsive-min.css" rel="stylesheet" />
+    <link href="blog/css/blog.css?_v=1" rel="stylesheet" />
+    <link href="Font-Awesome-4.5.0/css/font-awesome.css" rel="stylesheet" />
+    <style>
+* {
+    box-sizing: border-box;
+}
+.pure-menu-setup {
+display: block;
+/*
+position: fixed;
+top: 0;
+left: 0; 
+z-index: 10;
+*/
+background: #1C8CD6;
+background: rgba(28,140,214,0.7);
+font-size: 11px;/*大小控制*/
+width: 4em;
+height: 4em;
+padding: 1em;
+}
+.pure-menu-setup:hover,
+.pure-menu-setup:focus {
+background: #1C8CD6;
+}
+.pure-menu-setup span {
+position: relative;
+display: block;
+margin-top: 0.9em;
+}
+.pure-menu-setup span,
+.pure-menu-setup span:before,
+.pure-menu-setup span:after {
+background-color: #fff;
+width: 100%;
+height: 3px;
+display: block;
+}
+.pure-menu-setup span:before,
+.pure-menu-setup span:after {
+position: absolute;
+top: -.6em;
+content: " ";/*增加内容使其填充*/
+}
+.pure-menu-setup span:after {
+top: .6em;
+}
+.pure-menu-dropdown {
+position:relative;
+}
+.pure-menu-dropdown-list {
+    /* To limit the menu width to the content of the menu: */
+    display: inline-block;
+    /* Or set the width explicitly: */
+    /* width: 10em; */
+}
+.pure-menu-dropdown-list .pure-menu-link{
+background: #1C8CD6;
+background: rgba(28,140,214,0.7);
+color:#fff;
+text-align: left;
+}
+.pure-menu-dropdown-list .pure-menu-link:hover,.pure-menu-dropdown-list .pure-menu-link:focus {
+background: #1C8CD6;
+text-decoration:none;
+}
+.pure-menu-dropdown-list .pure-menu-selected .pure-menu-link:visited {
+    color:#fff;
+}
+.pure-menu-link i {
+    margin-right: 1em;
+}
+@media (min-width: 48em) {
+    .pure-menu-dropdown {
+    display:none;
+    }
+}
+@media (max-width: 48em) {
+    .pure-menu-dropdown {
+    display:block;
+    }
+}
+</style>
+</head>
+<body>
+    <h1>缩小后查看</h1>
+<!-- 
+    <a href="#" class="pure-menu-setup">
+        <span></span>
+    </a>
+-->
+<div class="pure-menu-dropdown">
+<div class="pure-menu-setup">
+        <span></span>
+</div>
+<div class="pure-menu pure-menu-dropdown-list">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link"><i class="fa fa-home"></i>首页</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link"><i class="fa fa-heart"></i>友情链接</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link"><i class="fa fa-map"></i>网站地图</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link"><i class="fa fa-fort-awesome"></i>关于我</a></li>
+    </ul>
+</div>
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+    var LoginUser = ViewData["StoreUser"] as Cactus.Model.Store.Store;
+    var Config = ViewData["SiteConfig"] as Cactus.Model.Sys.SiteConfig;
+}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<!--缩放比例以及允许缩放-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!--格式的检测，电话，邮箱-->
+<meta name="format-detection" content="telephone=no, email=no" />
+<!--是否显示苹果工具栏和菜单栏-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--状态栏样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>@Config.SiteName-商户后台管理</title>
+    @Styles.Render("~/Content/pure")
+    <!--[if gt IE 8]>
+    @Styles.Render("~/Content/pure-ie")
+    <!--<![endif]-->
+    @Styles.Render("~/Content/fonts-css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/unobtrusive")
+    @Scripts.Render("~/bundles/validate")
+    @Scripts.Render("~/bundles/LoadLayer")
+
+    @Scripts.Render("~/bundles/tipso")
+    @Styles.Render("~/Content/tipso")
+    <script src="~/Scripts/jqPaginator.js"></script>
+    @Scripts.Render("~/bundles/config")
+    @Styles.Render("~/Content/admincss")
+
+
+    @Scripts.Render("~/bundles/upload2")
+<style>
+.pure-form select{
+    height:initial;
+}
+.logo {
+	background-image: url(@Url.Content("~/Content/Admin/images/logo.png"));
+}
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".on-children").bind("click", function () {
+            var $next = $(this).next();
+            if ($next.css("display") == 'none') {
+                $next.show(300);
+            } else {
+                $next.hide(300);
+            }
+        })
+    })
+</script>
+</head>
+<body style="height:100%;padding:0; margin:0;" class="theme-2">
+<div class="pure-g" >
+<div class="pure-u-1-8">
+<div class="main-left theme-1">
+<div class="upper logo"></div>
+<!--菜单 start-->
+<div class="pure-menu custom-restricted-width down">
+<ul class="pure-menu-list">
+    @{Html.RenderAction("FuncBar", "Store");}
+</ul>
+</div>
+<!--菜单 end-->
+
+</div>
+</div>
+<div class="pure-u-7-8">
+  <div class="main-right">
+    <div class="pure-g" >
+      <div class="pure-u-1 upper theme-3" >
+        <div class="f-rigth"> 
+          <!--右上导航菜单 start-->
+                @{Html.RenderAction("NavBar", "Store");}
+          <!--右上导航菜单 end--> 
+        </div>
+      </div>
+      <div class="pure-u-1 down" >
+        <div class="down-content"> 
+          <!--内容 start-->
+           @RenderBody()
+          <!--内容 end--> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div data-loadlayer="true" data-loadlayer-id="load" data-loadlayer-msg="loading..."></div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="博客-个人主页,不在支持IE8">
+<title>个人主页</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png?_v=1" />
+    <!--css基本库与扩展库-->
+    <link href="pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="pure0.6.0/pure-extend.css" rel="stylesheet" />
+    <link href="pure0.6.0/grids-responsive-min.css" rel="stylesheet" />
+    <!--bolg库-->
+    <link href="css/public.css" rel="stylesheet" />
+    <link href="blog/css/blog.css?_v=4" rel="stylesheet" />
+    <!--字体图标库-->
+    <link href="Font-Awesome-4.5.0/css/font-awesome.css" rel="stylesheet" />
+    <style>
+        /*top返回顶部*/
+        .pure-top {
+            background-color: #7266BA;
+            border-color: #7266BA;
+            color: #FFF !important;
+            position: fixed;
+            z-index: 9998;
+            right: 20px;
+            bottom: 20px;
+            text-align:center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="new-pagenav">
+        <div class="new-pagenav-left"><a href="#" class="pure-link" style=" display: block;"><i class="fa fa-chevron-left fa-m-right"></i>上一页</a></div>
+        <div class="new-pagenav-center"><img src="images/qsbk_shit32px.png" style="background-position:center;display: block; margin-top:4px;"/></div>
+        <div class="new-pagenav-right"><a href="#" class="pure-link" style=" display: block;">下一页<i class="fa fa-chevron-right fa-m-left"></i></a></div>
+    </div>
+
+    <div id="section_list"></div>
+    <a href="#" class="pure-button pure-top"><i class="fa  fa-chevron-up "></i></a>
+
+    <script src="Js/jquery-1.7.2.min.js"></script>
+    <script src="Js/jquery.tmpl.js"></script>
+    
+
+
+    <div id="div_each">
+</div>
+<script id="each" type="text/x-jquery-tmpl"> 
+    
+        {{each(i,detail) details}}
+        <section class="post">
+            <header class="post-header">
+                <img class="post-avatar" alt="${detail.author}" height="48" width="48" src="${detail.avatar}">
+
+                <h2 class="post-title">${detail.title}</h2>
+
+                <p class="post-meta">
+                    由 <a class="post-author" href="javascript:;">${detail.author}</a> 发表于 ${detail.time}, 阅读(${detail.pv}) 
+                    {{each(j,tag) detail.tags}}
+                    <a class="post-category" href="javascript:;">${tag.name}</a>
+                    {{/each}}
+                </p>
+            </header>
+
+            <div class="post-description">
+                {{html detail.content}}
+            </div>
+        </section>
+        {{/each}}
+</script> 
+<script type="text/javascript">
+    /*
+    { title: '标题1', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '1428', tags: ['css'], content: '' },
+    */
+    var eachData = {
+        details: [
+            { title: '标题1', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '1428', tags: [{ name: 'css' }], content: '' },
+            { title: '标题2', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '2428', tags: [{ name: 'css' }, { name: 'javascript' }], content: '' },
+            { title: '标题3', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '3428', tags: [{ name: 'css' }, { name: 'javascript' }, { name: 'UI' }], content: '' }]
+    };
+    $("#each").tmpl(eachData).appendTo('#div_each');
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "后台管理";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style type="text/css">
+    .pure-panel {
+        text-align:center;
+        background-color:#0094ff;
+        width:150px;
+        height:150px;
+        line-height:150px;
+        color:#ffffff;
+        font-size:16px;
+        float: left;
+        margin:1px;
+        padding:0px;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+    }
+    .pure-panel {
+        opacity: 1;
+        filter: alpha(opacity=100);
+    }
+    .pure-panel-title {
+        margin-top:10px;
+        text-align:center;
+        font-weight:bold;
+        display:block;
+        width:150px;
+        font-size:110%;
+        line-height:normal;
+
+    }
+    .pure-panel-content {
+        margin-top:10px;
+        text-align:center;
+        display:block;
+        width:150px;
+        line-height:normal;
+        word-wrap: break-word;
+    } 
+</style>
+<!--基本数据显示面板-->
+<div class="pure-panel">
+    <div class="pure-panel-title">系统时间</div>
+    <div class="pure-panel-content">@DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">缓存总数</div>
+    <div class="pure-panel-content">@HttpRuntime.Cache.Count</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">基目录</div>
+    <div class="pure-panel-content">@AppDomain.CurrentDomain.BaseDirectory</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>
+<div class="pure-panel">
+    <div class="pure-panel-title">1111</div>
+    <div class="pure-panel-content">统计或者提示</div>
+</div>

@@ -1,0 +1,14 @@
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\obj\Release\Cactus.MySQLService.csprojResolveAssemblyReference.cache
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.MySQLService.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.MySQLService.pdb
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.Common.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.IService.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\MySql.Data.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\System.Data.SQLite.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.Common.pdb
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.IService.pdb
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\bin\Release\System.Data.SQLite.xml
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\obj\Release\Cactus.MySQLService.dll
+D:\vs2010Workspace\Cactus\Cactus.MySQLService\obj\Release\Cactus.MySQLService.pdb

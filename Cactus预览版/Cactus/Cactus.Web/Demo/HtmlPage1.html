@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*生意参谋-top*/
+        var _ht = function (str) {
+            return str.replace(/<[^>]+>/g, '').replace(/\"/g, '').replace(/'/g, '').replace(/\\/g, '').replace(/\//g, '').replace(/{/g, '').replace(/}/g, '').replace(/]/g, '').replace(/\[/g, '').trim();
+        };
+        var rowlist = document.getElementsByClassName('table-body')[0].getElementsByClassName('row');
+        var list_length = rowlist.length;
+        var json = '{"arry":[';
+        for (var i = 0; i < list_length; i++) {
+            var spanlist = rowlist[i].getElementsByClassName('col');
+            //宝贝标题
+            var b_title = _ht(spanlist[0].getElementsByTagName('a')[0].getAttribute('title'));
+            //宝贝链接
+            var b_href = spanlist[0].getElementsByTagName('a')[0].getAttribute('href');
+            //宝贝图片
+            var b_img = spanlist[0].getElementsByTagName('a')[0].getElementsByTagName('img')[0].getAttribute('src');
+            //发布时间
+            var b_time = spanlist[1].getElementsByClassName('datetime')[0].innerText;
+            //浏览量
+            var b_pv = spanlist[2].innerText;
+            //访问数
+            var b_uv = spanlist[3].innerText;
+            //支付金额
+            var b_gmv = spanlist[4].innerText;
+            //支付买家数
+            var b_buyerCnt = spanlist[5].innerText;
+            //支付转化率
+            var b_payRate = spanlist[6].innerText;
+            if (i == 0) {
+                json += '{"b_title":"'
+                + b_title + '","b_href":"'
+                + b_href + '","b_img":"'
+                + b_img + '","b_time":"'
+                + b_time + '","b_pv":"'
+                + b_pv + '","b_uv":"'
+                + b_uv + '","b_gmv":"'
+                + b_gmv + '","b_buyerCnt":"'
+                + b_buyerCnt + '","b_payRate":"'
+                + b_payRate + '"}';
+            } else {
+                json += ',{"b_title":"'
+                + b_title + '","b_href":"'
+                + b_href + '","b_img":"'
+                + b_img + '","b_time":"'
+                + b_time + '","b_pv":"'
+                + b_pv + '","b_uv":"'
+                + b_uv + '","b_gmv":"'
+                + b_gmv + '","b_buyerCnt":"'
+                + b_buyerCnt + '","b_payRate":"'
+                + b_payRate + '"}';
+            }
+        }
+        json += ']} ';
+        json;
+    </script>
+    <script type="text/javascript">
+        /*客户关系管理-购物车商品*/
+        var json = '{"arry":[';
+        var tr_list = document.getElementsByClassName('table')[0].getElementsByTagName('tr');
+        for (var i = 1; i < tr_list.length; i++) {
+            var b_info_tr = tr_list[i].getElementsByTagName('td');//从第二个开始
+            var b_title = b_info_tr[0].innerText;//宝贝标题
+            var b_link = b_info_tr[0].getElementsByTagName('a')[0].getAttribute('href');//宝贝链接
+            var b_num = b_info_tr[1].innerText;//今日加购人次
+            var b_num30 = b_info_tr[2].innerText;//30天累计加购人次
+            var b_count = b_info_tr[3].innerText;//库存
+            if (i == 1) {
+                json += '{"b_title":"'
+                + b_title + '","b_link":"'
+                + b_link + '","b_num":"'
+                + b_num + '","b_num30":"'
+                + b_num30 + '","b_count":"'
+                + b_count + '"}';
+            } else {
+                json += ',{"b_title":"'
+                + b_title + '","b_link":"'
+                + b_link + '","b_num":"'
+                + b_num + '","b_num30":"'
+                + b_num30 + '","b_count":"'
+                + b_count + '"}';
+            }
+        }
+        json += ']} ';
+        json;
+    </script>
+    <script type="text/javascript">
+        /*检验服务是否符合*/
+        var _ht = function (str) {
+            return str.replace(/<[^>]+>/g, '').replace(/\"/g, '').replace(/'/g, '').replace(/\\/g, '').replace(/\//g, '').replace(/{/g, '').replace(/}/g, '').replace(/]/g, '').replace(/\[/g, '').trim();
+        };
+        var list_body = document.getElementById('J_AppList').getElementsByTagName('tbody');
+        var arr = [];
+        var p_arr = ['生意参谋', '会员关系管理'];
+        var b_arr = new Array(p_arr.length);
+        for (var i=0; i < b_arr.length; i++) { b_arr[i] = false;}
+        var result_arr = [];
+        for (var i = 0; i < list_body.length; i++) {
+            arr.push(_ht(list_body[i].getElementsByClassName('list')[0].getElementsByTagName('a')[0].getAttribute('title')));
+        };
+        var lack = true;
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == p_arr[0]) {b_arr[0]=true;}
+            if (arr[i] == p_arr[1]) {b_arr[1]=true;}
+        }
+        for (var i = 0;i< b_arr.length ; i++) {
+            if (b_arr[i]==false) {
+                result_arr.push("缺少[" + p_arr[i] + "]服务");
+                lack = false;
+            }
+        }
+        var json = '{"islack":"' + lack + '","msg":"' + result_arr.join(",")+ '"}';json
+    </script>
+</body>
+</html>

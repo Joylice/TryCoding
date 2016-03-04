@@ -1,0 +1,71 @@
+﻿@model Cactus.Model.Sys.User
+@{
+    Layout = null;
+}
+
+<div style="margin: 5px 0px 5px 0px;">
+    <a href="javascript:;" class="pure-button pure-button-primary" onclick="loadContent('/Admin/Admin/UserUpdate/@(Model.User_Id)',true)">修改资料</a>
+    <a href="javascript:;" class="pure-button pure-button-primary" onclick="loadContent('/Admin/Admin/UserAlterFace/@(Model.User_Id)',true)">修改头像</a>
+    
+    <a href="javascript:;" class="pure-button pure-button-primary"   
+        data-ajax="true" 
+        data-ajax-method="get" 
+        data-ajax-url="/Admin/Admin/UserResetPwd/@(Model.User_Id)" 
+        data-ajax-loading="#load"  
+        data-ajax-confirm="确定重置吗？"
+        data-ajax-type="json"
+        data-ajax-success="if(data.pass){alert(data.msg);}else{alert(data.error);}">重置密码</a>
+    
+    
+</div>
+<table class="pure-table pure-table-bordered">
+    <tbody>
+        <tr>
+            <th>#</th>
+            <td>@(Model.User_Id)</td>
+        </tr>
+        <tr>
+            <th>头像</th>
+            <td>
+                <img src="@(Model.Avatar)" alt="头像" width="100px" height="100px" />
+            </td>
+        </tr>
+        <tr>
+            <th>账户名</th>
+            <td>@(Model.Name)</td>
+        </tr>
+
+        <tr>
+            <th>昵称</th>
+            <td>@(Model.NickName)</td>
+        </tr>
+        <tr>
+            <th>手机号</th>
+            <td>@(Model.Phone)</td>
+        </tr>
+        <tr>
+            <th>QQ号</th>
+            <td>@(Model.Qq)</td>
+        </tr>
+        <tr>
+            <th>角色名</th>
+            <td>@(Model.Role.RoleName)</td>
+        </tr>
+        <tr>
+            <th>创建的时间</th>
+            <td>@(Model.AddTime)</td>
+        </tr>
+        <tr>
+            <th>邮箱</th>
+            <td>@(Model.Email)</td>
+        </tr>
+        <tr>
+            <th>最近登录IP</th>
+            <td>@(Model.LastLoginIp)</td>
+        </tr>
+        <tr>
+            <th>最近登录时间</th>
+            <td>@(Model.LastLoginTime)</td>
+        </tr>
+    </tbody>
+</table>

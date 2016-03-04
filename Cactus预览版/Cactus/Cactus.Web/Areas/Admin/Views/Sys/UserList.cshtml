@@ -1,0 +1,165 @@
+﻿@{
+    Layout = null;
+    var list = ViewData["UserList"] as List<Cactus.Model.Sys.User>;
+    var pageturn = ViewData["Pageturn"] as Cactus.Model.Other.PageTurnModel;
+}
+
+<div class="pure-g">
+    <a href="javascript:;" onclick="loadContent_Jq('main-content', '/Admin/Sys/UserAdd');" class="pure-link pure-link-red">添加用户</a>
+</div>
+
+<table class="pure-table pure-table-bordered" id="role">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>登录账户</th>
+            <th>昵称</th>
+            <th>角色名</th>
+            <th>注册时间</th>
+            <th>最后登录时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (list != null)
+        { 
+            foreach (var item in list)
+            { 
+            <tr>
+                <td>@item.User_Id</td>
+                <td>@item.Name</td>
+                <td>@item.NickName</td>
+                <td>@item.Role.RoleName</td>
+                <td>@item.AddTime.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                <td>@item.LastLoginTime.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                <td>
+                    <a href="javascript:;" class="pure-link pure-link-default" name="upd" data-value="@item.User_Id">编辑</a>
+                    <a href="javascript:;" class="pure-link pure-link-red" name="del" data-value="@item.User_Id">删除</a>
+                    <a href="javascript:;" class="pure-link pure-link-red" name="info" data-value="@item.User_Id">查看</a>
+                    <a href="javascript:;" class="pure-link pure-link-red" name="pwd" data-value="@item.User_Id">重置密码</a>
+                    <a href="javascript:;" class="pure-link pure-link-red" name="face" data-value="@item.User_Id">修改头像</a>
+                </td>
+            </tr>
+            }
+        }else{
+            <tr ><td colspan="6">(暂无相关记录)</td></tr>
+        }
+    </tbody>
+</table>
+<ul class="pure-paginator" id="table_paginator">
+</ul>
+<script type="text/javascript">
+    function onTable(index) {
+        tipTable($('#role'),'数据加载中...');
+        $.ajax({
+            url: "/Admin/Sys/UserList",
+            type: "post",
+            data: { page: index },
+            success: function (obj) {
+                if (obj.pass) {
+                    renderTable($('#role'),obj.rows,[
+                        { field: "User_Id" },
+                        { field: "Name" },
+                        { field: "NickName" },
+                        { field: "RoleName" },
+                        { field: "AddTime" },
+                        { field: "LastLoginTime" },
+                        { field: "User_Id",formatter:function(val, rec){
+                            var str='<a href="javascript:;" class="pure-link pure-link-default" name="upd" data-value="'+val+'">编辑</a>'+
+                                    '<a href="javascript:;" class="pure-link pure-link-red" name="del" data-value="'+val+'">删除</a>'+
+                                    '<a href="javascript:;" class="pure-link pure-link-red" name="info" data-value="'+val+'">查看</a>'+
+                                    '<a href="javascript:;" class="pure-link pure-link-red" name="pwd" data-value="'+val+'">重置密码</a>'+
+                                    '<a href="javascript:;" class="pure-link pure-link-red" name="face" data-value="'+val+'">修改头像</a>';
+                            return str;
+                        } }]);
+                    onPaginator(obj.pagination);
+                } else {
+                    alert(obj.error)
+                }
+            }
+        });
+    }
+
+    function onPaginator(p) {
+        bindFunc();
+        $('#table_paginator').pure_paginator({
+            spacerNum: 2,
+            prevStr: '上一页',
+            nextStr: '下一页',
+            countStr: '共{count}页',
+            count: p.PageCount,
+            inPage: p.PageIndex,
+            onPage: function (index) { 
+                onTable(index);
+                onPaginator(index); 
+            }
+        });
+    }
+    //操作绑定
+    function bindFunc(){
+        $('#role a[name=upd]').bind('click',function(){
+            var $target=$(this);
+            var id= $target.attr('data-value');
+            loadContent_Jq('main-content', '/Admin/Sys/UserUpdate?id='+id);
+        });
+        $('#role a[name=del]').bind('click',function(){
+            var $target=$(this);
+            var id= $target.attr('data-value');
+            if(confirm('确定真的删除吗')){
+                loadDialog_show();
+                $.ajax({
+                    url: "/Admin/Sys/UserDelete",
+                    type: "post",
+                    data: { ids: id },
+                    success: function (obj) {
+                        loadDialog_hide();
+                        if(obj.pass){
+                            alert('删除成功');
+                            $target.parent().parent().remove();
+                        }else{
+                            alert('删除失败');
+                        }
+                    }
+                });
+            }
+        });
+        $('#role a[name=info]').bind('click',function(){
+            var $target=$(this);
+            var id= $target.attr('data-value');
+            loadContent_Jq('main-content', '/Admin/Sys/UserInfo?id='+id);
+        });
+        $('#role a[name=pwd]').bind('click',function(){
+            var $target=$(this);
+            var id= $target.attr('data-value');
+            if(confirm('确定真的重置密码')){
+                loadDialog_show();
+                $.ajax({
+                    url: "/Admin/Sys/UserResetPwd?id="+id,
+                    type: "get",
+                    success: function (obj) {
+                        loadDialog_hide();
+                        if(obj.pass){
+                            alert(obj.msg);
+                        }else{
+                            alert(obj.error);
+                        }
+                    }
+                });
+            }
+        });
+        $('#role a[name=face]').bind('click',function(){
+            var $target=$(this);
+            var id= $target.attr('data-value');
+            loadContent_Jq('main-content', '/Admin/Sys/UserAlterFace?id='+id);
+        });
+    }
+
+    $(function () {
+        var p={
+            PageCount:@pageturn.PageCount,
+            PageIndex:@pageturn.PageIndex
+            };
+        onPaginator(p);
+    })
+</script>
+

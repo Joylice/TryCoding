@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+    var LoginUser = ViewData["LoginUser"] as Cactus.Model.Sys.User;
+    var Config = ViewData["SiteConfig"] as Cactus.Model.Sys.SiteConfig;
+}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<!--缩放比例以及允许缩放-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!--格式的检测，电话，邮箱-->
+<meta name="format-detection" content="telephone=no, email=no" />
+<!--是否显示苹果工具栏和菜单栏-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--状态栏样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>@Config.SiteName-网站后台管理</title>
+    @Styles.Render("~/Content/pure")
+    <!--[if gt IE 8]>
+    @Styles.Render("~/Content/pure-ie")
+    <!--<![endif]-->
+    @Styles.Render("~/Content/fonts-css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/unobtrusive")
+    @Scripts.Render("~/bundles/validate")
+    @Scripts.Render("~/bundles/LoadLayer")
+
+    @Scripts.Render("~/bundles/tipso")
+    @Styles.Render("~/Content/tipso")
+    <script src="~/Scripts/jqPaginator.js"></script>
+    @Scripts.Render("~/bundles/config")
+    @Styles.Render("~/Content/admincss")
+
+
+    @Scripts.Render("~/bundles/upload2")
+<style>
+.pure-form select{
+    height:initial;
+}
+.logo {
+	background-image: url(@Url.Content("~/Content/Admin/images/logo.png"));
+}
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".on-children").bind("click", function () {
+            var $next = $(this).next();
+            if ($next.css("display") == 'none') {
+                $next.show(300);
+            } else {
+                $next.hide(300);
+            }
+        })
+    })
+</script>
+</head>
+<body style="height:100%;padding:0; margin:0;" class="theme-2">
+<div class="pure-g" >
+<div class="pure-u-1-8">
+<div class="main-left theme-1">
+<div class="upper logo"></div>
+<div class="upper text">欢迎：@LoginUser.NickName</div>
+
+<!--菜单 start-->
+<div class="pure-menu custom-restricted-width down">
+<ul class="pure-menu-list">
+    @{Html.RenderAction("AdminBar", "Admin");}
+    @{Html.RenderAction("FuncBar", "Admin");}
+</ul>
+</div>
+<!--菜单 end-->
+
+</div>
+</div>
+<div class="pure-u-7-8">
+  <div class="main-right">
+    <div class="pure-g" >
+      <div class="pure-u-1 upper theme-3" >
+        <div class="f-rigth"> 
+          <!--右上导航菜单 start-->
+                @{Html.RenderAction("NavBar", "Admin");}
+@*          <div class="pure-menu pure-menu-horizontal nav-menu">
+            <ul class="pure-menu-list">
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover"> <a href="javascript:;" class="pure-menu-link nav">个人中心<i class="fa fa-chevron-down" ></i></a>
+                <ul class="pure-menu-children">
+                  <li class="pure-menu-item pure-menu-selected"><a href="/Admin/UserInfo" class="pure-menu-link nav"><i class="fa fa-th-list"></i>个人资料</a></li>
+                  <li class="pure-menu-item pure-menu-selected"><a href="/Admin/AlterPwd" class="pure-menu-link nav"><i class="fa fa-key"></i>修改密码</a></li>
+                  <li class="pure-menu-item pure-menu-selected"><a href="/Admin/UserFace" class="pure-menu-link nav"><i class="fa fa-file-image-o"></i>更换头像</a></li>
+                </ul>
+              </li>
+              <li class="pure-menu-item pure-menu-selected "><a href="javascript:;" class="pure-menu-link nav" data-ajax-mode="" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Logout" data-ajax-loading="#load" data-ajax-loading-duration="1000" data-ajax-confirm="是否真的退出！" data-ajax-success="if(data.success){alert(data.msg);location.reload();}"><i class="fa fa-power-off"></i>退出</a></li>
+              <li class="pure-menu-item pure-menu-selected "><a href="/Admin/CacheClear" class="pure-menu-link nav" data-ajax-mode="" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/CacheClear" data-ajax-loading="#load" data-ajax-loading-duration="1000" data-ajax-confirm="是否真的清除缓存！" data-ajax-success="if(data.success){alert(data.msg);location.reload();}"><i class="fa fa-trash-o"></i>清除缓存</a></li>
+            </ul>
+          </div>*@
+          <!--右上导航菜单 end--> 
+        </div>
+      </div>
+      <div class="pure-u-1 down" >
+        <div class="down-content"> 
+          <!--内容 start-->
+           @RenderBody()
+          <!--内容 end--> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div data-loadlayer="true" data-loadlayer-id="load" data-loadlayer-msg="loading..."></div>
+</body>
+</html>

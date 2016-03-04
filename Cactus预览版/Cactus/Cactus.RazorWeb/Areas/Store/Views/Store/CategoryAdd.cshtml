@@ -1,0 +1,53 @@
+﻿<script>
+    function validateForm() {
+        var b = $("#categoryAdd").validate({
+            onsubmit:false,
+            errorPlacement: function (error, element) {
+                $(element).tipso({
+                    useTitle: false,
+                    speed: 400,
+                    position: 'right',
+                    onShow: function () {
+                        //$(element).tipso('destroy');
+                        //alert($(error).html())
+                    },
+                    onHide: function () {
+                        $(element).tipso('destroy');
+                        //alert($(error).html())
+                    }
+                });
+                $(element).tipso('update', 'content', $(error).html());
+                $(element).tipso('show');
+                return false;
+            }
+        }).form();
+
+        //.element($("[data-val=true]"));
+        return b;
+    }
+    function successForm(data, status, xhr) {
+        if (data.pass) {
+            loadContent(data.url)
+        } else {
+            alert(data.error)
+        }
+    }
+</script>
+<form id="categoryAdd" class="pure-form pure-form-stacked" 
+    data-ajax="true" 
+    data-ajax-url="/Store/Store/CategoryAdd" 
+    data-ajax-loading="#load" 
+    data-ajax-loading-duration="1000" 
+    data-ajax-method="post" 
+    data-ajax-confirm="确定添加" 
+    data-ajax-begin="validateForm"
+    data-ajax-success="successForm"
+    data-ajax-type="json">
+    <fieldset>
+        <legend>添加分类名</legend>
+
+        <label>分类名</label>
+        <input name="CategoryName" type="text" placeholder="请输入分类名" data-val="true" data-rule-required="true"  data-msg-required="分类名不能为空" data-rule-stringLength="20" data-msg-stringLength="分类名长度为20">
+        <button type="submit" class="pure-button pure-button-primary">添加</button>
+    </fieldset>
+</form>

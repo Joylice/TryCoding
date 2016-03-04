@@ -1,0 +1,74 @@
+﻿@model Cactus.Model.Sys.Role
+@{
+    Layout = null;
+    List<Cactus.Model.Sys.ActionGroup> al = ViewData["ActionGroup"] as List<Cactus.Model.Sys.ActionGroup>;
+}
+<script>
+    $(function () {
+        $("#roleupdate button").bind("click", function () {
+            var rolename = $("#roleupdate input[name=RoleName]").val();
+            var actionids = "";
+            $("#roleupdate input[name=actionid]:checked").each(function (index, element) {
+                if (index == 0) {
+                        actionids += $(this).val();
+                } else {
+                        actionids += "," + $(this).val();
+                }
+            })
+            var Id = $("#roleupdate input[name=ID]").val();
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Admin/RoleUpdate",
+                data: {
+                    Id: Id,
+                    RoleName: rolename,
+                    ActionIds: actionids
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.pass) {
+                        loadContent(data.url)
+                    } else {
+                        alert(data.error)
+                    }
+                },
+                error: function (e, s, t) {
+                    //alert('error');
+                    //alert('网络错误');
+                }
+            });
+        })
+    })
+</script>
+<form id="roleupdate" class="pure-form pure-form-stacked" >
+    <input name="ID" type="hidden" value="@(Model.Role_Id)">
+    <fieldset>
+        <legend>修改角色</legend>
+
+        <label>角色名</label>
+        <input name="RoleName" type="text" value="@Model.RoleName" placeholder="请输入角色名" >
+
+        <label>权限选择</label>
+        @{
+            var sarry = Model.ActionIds.Split(',');
+        }
+        @foreach (var i in al)
+        {
+            <fieldset>
+                <legend style=" padding-left:20px;">@(i.ActionGroupName)</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1" style="margin-left:30px;float:left;">
+                        @foreach (var j in i.Actions)
+                        {
+                            <label style="display: inline;">@(j.ActionName)
+                                <input type="checkbox" value="@(j.Action_Id)" name="actionid"  @(sarry.Contains(j.Action_Id.ToString())?"checked=\"checked\"":"")>
+                            </label>
+                        }
+                    </div>
+                </div>
+            </fieldset>
+        }
+
+        <button type="button" class="pure-button pure-button-primary">更新</button>
+    </fieldset>
+</form>

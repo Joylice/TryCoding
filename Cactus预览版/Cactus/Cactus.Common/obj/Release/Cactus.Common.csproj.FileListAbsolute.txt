@@ -1,0 +1,7 @@
+D:\vs2010Workspace\Cactus\Cactus.Common\bin\Release\Cactus.Common.dll
+D:\vs2010Workspace\Cactus\Cactus.Common\bin\Release\Cactus.Common.pdb
+D:\vs2010Workspace\Cactus\Cactus.Common\bin\Release\MySql.Data.dll
+D:\vs2010Workspace\Cactus\Cactus.Common\bin\Release\System.Data.SQLite.dll
+D:\vs2010Workspace\Cactus\Cactus.Common\bin\Release\System.Data.SQLite.xml
+D:\vs2010Workspace\Cactus\Cactus.Common\obj\Release\Cactus.Common.dll
+D:\vs2010Workspace\Cactus\Cactus.Common\obj\Release\Cactus.Common.pdb

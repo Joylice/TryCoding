@@ -1,0 +1,32 @@
+﻿@{
+    var LoginUser = ViewData["LoginUser"] as Cactus.Model.Sys.User;
+
+}
+<div class="pure-menu pure-menu-horizontal nav-menu">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="javascript:;" style="color: white; text-decoration: none;">
+            <img src="@LoginUser.Avatar" alt="头像" width="38px" height="38px" style="border-radius: 20px;">
+        </a></li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover"><a href="javascript:;" class="pure-menu-link nav">@LoginUser.NickName<i class="fa fa-chevron-down"></i></a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item pure-menu-selected">
+                    <a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/CenterUser" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-th-list"></i>个人资料</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/CenterAlterPwd" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-key"></i>修改密码</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/CenterAlterFace" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-file-image-o"></i>更换头像</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item pure-menu-selected ">
+            <a href="javascript:;" class="pure-menu-link nav" data-ajax-mode="" data-ajax="true" data-ajax-method="get" data-ajax-url="/Admin/Admin/Logout" data-ajax-loading="#load" data-ajax-loading-duration="1000" data-ajax-confirm="是否真的退出！" data-ajax-type="json" data-ajax-success="if(data.success){alert(data.msg);location.reload();}"><i class="fa fa-power-off"></i>退出</a></li>
+        <li class="pure-menu-item pure-menu-selected ">
+            <a href="/Admin/Admin/CacheClear" class="pure-menu-link nav"
+            data-ajax-mode=""
+            data-ajax="true"
+            data-ajax-method="get"
+            data-ajax-url="/Admin/Admin/CacheClear"
+            data-ajax-loading="#load"
+            data-ajax-loading-duration="1000"
+            data-ajax-confirm="是否真的清除缓存！"
+            data-ajax-type="json"
+            data-ajax-success="if(data.success){alert(data.msg);location.reload();}"><i class="fa fa-trash-o"></i>清除缓存</a></li>
+    </ul>
+</div>

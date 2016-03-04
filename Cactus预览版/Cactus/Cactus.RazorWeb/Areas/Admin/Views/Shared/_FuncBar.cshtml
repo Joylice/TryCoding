@@ -1,0 +1,78 @@
+﻿@{
+    var LoginUser = ViewData["LoginUser"] as Cactus.Model.Sys.User;
+    var ListActionGroup = ViewData["ListActionGroup"] as List<Cactus.Model.Sys.ActionGroup>;
+    
+}
+
+<!--功能栏目 start-->
+<li class="pure-menu-heading head-tip"><i class="fa fa-tags"></i>功能栏</li>
+@if(LoginUser.IsSuperUser){
+
+    foreach (var i in ListActionGroup)
+    {
+        
+        <li class="pure-menu-item">
+            <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>@(i.ActionGroupName)</a>
+            @if(i.Actions.Count>0){
+            <div style="display: none;" class="have-children">
+                <ul class="pure-menu-list">
+                    @foreach (var j in i.Actions)
+                    {
+                    <li class="pure-menu-item">
+                        <a href="javascript:;" 
+                            class="pure-menu-link" 
+                            data-ajax-update=".down-content" 
+                            data-ajax="true" 
+                            data-ajax-method="get" 
+                            data-ajax-url="@(j.ActionUrl)" 
+                            data-ajax-loading="#load" 
+                            data-ajax-success="$('.down-content').unobtrusive('resetbind')">
+                            <i class="fa fa-th-large"></i>
+                            @(j.ActionName)</a></li>
+                    }
+                </ul>
+            </div>
+            }
+        </li>
+    }
+}else{
+    string[] said = LoginUser.Role.ActionIds.Split(',');
+    int[] aid=new int[said.Length];
+    for(int i=0;i<said.Length;i++){
+        aid[i] = int.Parse(said[i]);
+    }
+    
+    //var ListActionGroup2 = ListActionGroup.Where(t => aid.Contains(t.Id));
+    foreach (var i in ListActionGroup)
+    {
+        <li class="pure-menu-item">
+            <a href="javascript:;" class="pure-menu-link on-children"><i class="fa fa-cog"></i>@(i.ActionGroupName)</a>
+            @{
+                var listAction = i.Actions.Where(t => aid.Contains(t.Action_Id)).ToList();  
+            }
+            
+            @if (listAction.Count > 0)
+            {
+            <div style="display: none;" class="have-children">
+                <ul class="pure-menu-list">
+                    @foreach (var j in listAction)
+                    {
+                    <li class="pure-menu-item">
+                        <a href="javascript:;" 
+                            class="pure-menu-link" 
+                            data-ajax-update=".down-content" 
+                            data-ajax="true" 
+                            data-ajax-method="get" 
+                            data-ajax-url="@(j.ActionUrl)" 
+                            data-ajax-loading="#load" 
+                            data-ajax-success="$('.down-content').unobtrusive('resetbind')">
+                            <i class="fa fa-th-large"></i>
+                            @(j.ActionName)</a></li>
+                    }
+                </ul>
+            </div>
+            }
+        </li>
+    }
+}
+<!--功能栏目 end-->

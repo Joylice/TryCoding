@@ -1,0 +1,49 @@
+﻿@model Cactus.Model.Sys.User
+@{
+    Layout = null;
+}
+
+@if (Model.Avatar.Length > 0)
+{
+<text>
+<img src="@(Model.Avatar)" alt="头像" width="100px" height="100px"/>
+</text>
+}
+<script type="text/javascript">
+
+    function look() {
+        alert($("input[name=AvatarFile]").upload("getFileVal"))
+    }
+    function clean() {
+        $("input[name=AvatarFile]").upload("clean")
+    }
+    function ajaxSubmit() {
+        $("input[name=AvatarFile]").upload({
+            url: '/Admin/Admin/CenterAlterFace',
+            // 其他表单数据
+            params: { Id: $("#AvatarFile input[name=Id]").val() },
+            // 上传完成后, 返回json, text
+            dataType: 'json',
+            onSend: function (obj, str) { return true; },
+            // 上传之后回调
+            onComplate: function (data) {
+                if (data.pass) {
+                    loadContent(data.url)
+                } else {
+                    alert(data.error)
+                }
+            }
+        });
+        $("input[name=AvatarFile]").upload("ajaxSubmit")
+    }
+</script>
+
+
+
+<input type="file" name="AvatarFile" /> 
+<div style="margin:5px 0px 5px 0px;" id="AvatarFile">
+    <input value="@(Model.User_Id)" name="Id" type="hidden" />
+    <input type="button" value="上传" onclick="ajaxSubmit()" class="button-success pure-button"/>
+    <input type="button" value="查看" onclick="look()" class="button-success pure-button"/>
+    <input type="button" value="清空" onclick="clean()" class="button-success pure-button"/>
+</div>

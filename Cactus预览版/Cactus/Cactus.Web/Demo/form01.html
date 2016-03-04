@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>表单和验证插件</title>
+    <link href="pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="css/public.css" rel="stylesheet" />
+    <link href="pure0.6.0/grids-responsive-min.css" rel="stylesheet" />
+    <link href="pure0.6.0/pure-extend.css" rel="stylesheet" />
+</head>
+<body>
+    <form class="pure-form  pure-form-aligned" id="form_01">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">用户名</label>
+                <input id="example_01" type="text" placeholder="用户名" >
+                <div class="pure-error pure-c-error" id="error_01"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="password">密码</label>
+                <input id="example_02" type="password" placeholder="密码" data-v-options="
+    {required: true,strLength: '4,12',
+        onComplete: function (send,isOk,result) {
+            if (result[0].level == 1) {
+                $('#error_msg').html('这是必填项');
+            }
+            else if (result[0].level == 2) {
+                $('#error_msg').html('长度错了');
+            }
+        }
+    }">
+                <div class="pure-error pure-c-error" id="error_02"></div>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="email">手机</label>
+                <input id="example_03" type="text" placeholder="手机">
+                <div class="pure-error pure-c-error" id="error_03"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="email">身份证</label>
+                <input id="example_04" type="text" placeholder="身份证">
+                <div class="pure-error pure-c-error" id="error_04"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="email">汉字</label>
+                <input id="example_05" type="text" placeholder="汉字">
+                <div class="pure-error pure-c-error" id="error_05"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="email">邮箱</label>
+                <input id="example_06" type="text" placeholder="邮箱">
+                <div class="pure-error pure-c-error" id="error_06"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="email">数字</label>
+                <input id="example_07" type="text" placeholder="数字">
+                <div class="pure-error pure-c-error" id="error_07"></div>
+            </div>
+            <div class="pure-control-group">
+                <label for="foo">Supercalifragilistic Label</label>
+                <div class="pure-u-auto">
+                    <div class="pure-lable">
+                        <input id="Checkbox5" type="checkbox" value="" />复选框1复选框1复选框1复选框1
+                    </div>
+                </div>
+                <div class="pure-u-auto">
+                    <div class="pure-lable">
+                        <input id="Checkbox1" type="checkbox" value="" />复选框2
+                    </div>
+                </div>
+                <div class="pure-u-auto">
+                    <div class="pure-lable">
+                        <input id="Checkbox2" type="checkbox" value="" />复选框3
+                    </div>
+                </div>
+                <div class="pure-u-auto">
+                    <div class="pure-lable">
+                        <input id="Checkbox3" type="checkbox" value="" />复选框4
+                    </div>
+                </div>
+                <div class="pure-u-auto">
+                    <div class="pure-lable">
+                        <input id="Checkbox4" type="checkbox" value="" />复选框5
+                    </div>
+                </div>
+            </div>
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox">
+                    I've read the terms and conditions
+                </label>
+                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        var state = {};
+        var example = [
+            { example_name: 'number', example_reg: /^\d+$/ },
+            { example_name: 'email', example_reg: /^\w+\@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/i },
+            { example_name: 'phone', example_reg: /^1[3458]{1}[0-9]{9}$/ },
+            { example_name: 'IDcard', example_reg: /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/ },
+            { example_name: 'isChinese', example_reg: /^[\u4E00-\u9FA5]+$/ }];
+        var true_arr = new Array();//对的集合
+        var false_obj = new Object();//错误对象
+        $.fn.checkForm = function (options) {
+            if (typeof options == "string") {
+                return $.fn.checkForm.methods[options](this);
+            }
+            options = options || {};
+            //获取（文本框，密码框，多行文本框），当失去焦点时，对其进行数据验证
+            $(this).each(function () {
+                state = $(this).data("verify");
+                if (state)
+                    $.extend(state.options, options);
+                else {
+                    state = $(this).data("verify", {
+                        options: $.extend({}, $.fn.checkForm.defaults, options)
+                    });
+                    state = $(this).data("verify");
+                }
+                $(this).addClass("pure-verify");
+                var o_state = state.options;
+                $(this).blur(function () {
+                    isValidate(this, o_state);
+                })
+
+            })
+        };
+        //方法
+        $.fn.checkForm.methods = {
+            validate: function (jq) {
+                var state_temp = $(jq).data("verify");
+                //console.log(state_temp.options)
+                return isValidate(jq, state_temp.options);
+            },
+            validateAll: function (jq) {
+                var b = true;
+                //console.log($(jq).find('.pure-verify').length);
+                $(jq).find('.pure-verify').each(function (index, element) {
+                    var state_temp = $(element).data("verify");
+                    //console.log(state_temp.options);
+                    b = isValidate(element, state_temp.options);
+                    if (b == false) {
+                        b = false;//有一个false就是false
+                    }
+                });
+                return b;
+            }
+        };
+        //默认项
+        $.fn.checkForm.defaults = $.extend({}, {
+            required: true,//是否必填 level:1
+            strLength: '',//长度区间<>(大于小于，没有等于) level:2
+            reg: '',//正则表达式校验 level:3
+            example: '',//内部的现成校验 level:4
+            onComplete: function (send, result,isOk) { } //对错都在这里，自己写逻辑 /*result是一个数组，数量一个的是返回错误，多个的是通过的多个结果集*/
+        });
+        var isValidate = function (obj, o_state) {
+            var _validate = $(obj).attr("data-v-options"); //获取属性的值
+            console.log(_validate);
+            if (_validate) {
+                var ver_obj = eval("(" + _validate + ")");
+                $.extend(o_state, ver_obj);//合并参数
+                console.log(o_state.required);
+            }
+            $(obj).attr("data-v", "false");
+            try {
+                var result = check($(obj), o_state, $(obj).val());
+                if (isArray(result)) {
+                    $(obj).attr("data-v", "true");
+                    o_state.onComplete($(obj), result, true);
+                    return true;
+                } else {
+                    var arr = new Array();
+                    arr.push(result);
+                    $(obj).attr("data-v", "false");
+                    o_state.onComplete($(obj), arr, false);
+                    return false;
+                }
+            } catch (e) {
+                //console.log(e.message);
+            }
+        }
+        //验证方法
+        var check = function (obj, ver_obj, val) {
+            true_arr = new Array();
+            //必填
+            if (required_fun(obj, ver_obj, val) == false) {
+                return false_obj;
+            }
+            if (ver_obj.required || val.length > 0) {//就算不是必填，如果有值，还是要校验
+                //长度
+                if (strLength_fun(obj, ver_obj, val) == false) {
+                    return false_obj;
+                }
+                //正则
+                if (reg_fun(obj, ver_obj, val) == false) {
+                    return false_obj;
+                }
+                //内置
+                if (example_fun(obj, ver_obj, val) == false) {
+                    return false_obj;
+                }
+            }
+            if (true_arr.length == 0) {
+                true_arr.push({ isOk: true, level: 0 });//0通过所有
+            }
+            return true_arr;
+        }
+        var checkAll = function () {
+
+        }
+        //必填
+        var required_fun = function (obj, ver_obj, val) {
+            if (ver_obj.required) {
+                if (val == '' || val == undefined) {
+                    false_obj = { isOk: false, level: 1 };
+                    return false;
+                } else {
+                    true_arr.push({ isOk: true, level: 1 });
+                    return true;
+                }
+            } else {
+                true_arr.push({ isOk: true, level: 1 });
+                return true;
+            }
+        }
+        //长度
+        var strLength_fun = function (obj, ver_obj, val) {
+            if (ver_obj.strLength != '' && ver_obj.strLength != null) {
+                var arr = ver_obj.strLength.split(',');
+                if (arr.length == 2) {
+                    var min = parseInt(arr[0]);
+                    var max = parseInt(arr[1]);
+                    var l = val.length;
+                    if (l > min && l < max) {
+                        true_arr.push({ isOk: true, level: 2 });
+                        return true;
+                    } else {
+                        false_obj = { isOk: false, level: 2 };
+                        return false;
+                    }
+                } else {
+                    false_obj = { isOk: false, level: 2 };
+                    return false;
+                }
+            } else { return true; }
+        }
+        //正则
+        var reg_fun = function (obj, ver_obj, val) {
+            if (ver_obj.reg != '' && ver_obj.reg != null) {
+                if (chk(val, ver_obj.reg)) {
+                    true_arr.push({ isOk: true, level: 3 });
+                    return true;
+                } else {
+                    false_obj = { isOk: false, level: 3 };
+                    return false;
+                }
+            } else { return true; }
+        }
+        //内置
+        var example_fun = function (obj, ver_obj, val) {
+            if (ver_obj.example != '' && ver_obj.example != null) {
+                for (var i = 0; i < example.length; i++) {
+                    if (ver_obj.example == example[i].example_name) {
+                        if (chk(val, example[i].example_reg)) {
+                            true_arr.push({ isOk: true, level: 4 });
+                            return true;
+                        } else {
+                            false_obj = { isOk: false, level: 4 };
+                            return false;
+                        }
+                    }
+                }
+            } else { return true; }
+        }
+
+        //正则匹配(返回bool值)
+        var chk = function (str, reg) {
+            return reg.test(str);
+        }
+        //是否array
+        var isArray = function (obj) {
+            return Object.prototype.toString.call(obj) === '[object Array]';
+        }
+    })(jQuery);
+
+    $('#example_01').checkForm({
+        required: true,//
+        strLength: '4,11',//5-10之间
+        onComplete: function (send, result,isOk) {
+            if (isOk) {
+                $('#error_01').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_01').html('这是错的,这是必填项');
+                }
+                else if(result[0].level == 2){
+                    $('#error_01').html('这是错的,长度错了');
+                }
+            }
+        }
+    });
+    $('#example_02').checkForm({
+        required: false,//
+        strLength: '4,12',//5-10之间
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_02').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_02').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_02').html('这是错的,长度错了');
+                }
+            }
+        }
+    });
+    $('#example_03').checkForm({
+        required: false,//
+        example:'phone',
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_03').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_03').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_03').html('这是错的,长度错了');
+                }else if (result[0].level == 4) {
+                    $('#error_03').html('这是错的,不是对的手机号码');
+                }
+
+            }
+        }
+    });
+    $('#example_04').checkForm({
+        required: true,//
+        example: 'IDcard',
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_04').html('这是对的,level:' + result[0].level);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_04').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_04').html('这是错的,长度错了');
+                }else if (result[0].level == 4) {
+                    $('#error_04').html('这是错的,不是对的身份证');
+                }
+            }
+        }
+    });
+    $('#example_05').checkForm({
+        required: false,//
+        example: 'isChinese',
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_05').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_05').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_05').html('这是错的,长度错了');
+                }else if (result[0].level == 4) {
+                    $('#error_05').html('这是错的,不是汉字');
+                }
+            }
+        }
+    });
+    $('#example_06').checkForm({
+        required: false,//
+        example: 'email',
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_06').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_06').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_06').html('这是错的,长度错了');
+                }else if (result[0].level == 4) {
+                    $('#error_06').html('这是错的,不是邮箱');
+                }
+            }
+        }
+    });
+    $('#example_07').checkForm({
+        required: false,//
+        example: 'number',
+        onComplete: function (send, result, isOk) {
+            if (isOk) {
+                $('#error_07').html('这是对的,result' + result.length);
+            } else {
+                if (result[0].level == 1) {
+                    $('#error_07').html('这是错的,这是必填项');
+                }
+                else if (result[0].level == 2) {
+                    $('#error_07').html('这是错的,长度错了');
+                }else if (result[0].level == 4) {
+                    $('#error_07').html('这是错的,不是数字');
+                }
+            }
+        }
+    });
+    $('#example_04').checkForm("validate");
+    $('#form_01').checkForm("validateAll");
+</script>
+</body>
+</html>

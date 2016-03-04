@@ -1,0 +1,14 @@
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.SQLiteService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.SQLiteService.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.Common.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.IService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\System.Data.SQLite.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\System.Data.SQLite.Linq.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\MySql.Data.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.Common.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.IService.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Release\System.Data.SQLite.xml
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\obj\Release\Cactus.SQLiteService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\obj\Release\Cactus.SQLiteService.pdb

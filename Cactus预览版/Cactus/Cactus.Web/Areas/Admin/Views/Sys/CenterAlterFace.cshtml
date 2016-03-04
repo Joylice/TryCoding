@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="pure-g">
+    <a href="javascript:;" onclick="loadContent_Jq('main-content', '/Admin/Sys/CenterUser');" class="pure-link pure-link-black">返回</a>
+</div>
+
+<form class="pure-form  pure-form-aligned">
+    <fieldset>
+        <legend>修改头像</legend>
+        <div class="pure-control-group">
+            <label style="width: 5em;">用户头像</label>
+            <img src="/Content/Images/1111-avatar.jpg" alt="头像" width="32px" height="32px" name="Face"/>
+            <input name="AvatarFile" type="file" />
+            <a href="javascript:;" name="face_submit" class="pure-link pure-link-default">提交</a>
+            <a href="javascript:;" name="face_clean" class="pure-link pure-link-default">清空</a>
+            <div class="pure-error pure-c-error" name="AvatarFile"></div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('a[name=face_clean]').bind('click', function () {
+            $("input[name=AvatarFile]").upload("clean");
+        });
+        $('a[name=face_submit]').bind('click', function () {
+            var file = $("input[name=AvatarFile]").upload("getFileVal");
+            if (file == '' || file == undefined) {
+                $("input[name=AvatarFile]").parent().find('.pure-c-error').html("请选择文件");
+                return;
+            }
+            loadDialog_show();
+            var $target = $(this);
+            $target.attr("disabled", "disabled");
+            $("input[name=AvatarFile]").upload({
+                url: '/Admin/Sys/CenterAlterFace',
+                // 上传完成后, 返回json, text
+                dataType: 'json',
+                onSend: function (obj, str) { $("div[name=AvatarFile]").html("上传中"); return true; },
+                // 上传之后回调
+                onComplate: function (data) {
+                    loadDialog_hide();
+                    $target.removeAttr("disabled");
+                    if (data.pass) {
+                        $("div[name=AvatarFile]").html('上传成功');
+                        $("img[name=Face]").attr('src', data.url);
+                    } else {
+                        $("div[name=AvatarFile]").html(data.error);
+                    }
+                }
+            });
+            $("input[name=AvatarFile]").upload("ajaxSubmit");
+        });
+
+    })
+</script>
+

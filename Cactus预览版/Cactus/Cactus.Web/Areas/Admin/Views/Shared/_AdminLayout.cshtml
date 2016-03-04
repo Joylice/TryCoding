@@ -1,0 +1,149 @@
+﻿@using Cactus.Model;
+@{
+    var loginUser = ViewData["LoginUser"] as Cactus.Model.Sys.User;
+    var Power =ViewData["Power"] as Cactus.Model.Sys.PowerConfig;
+    var site = ViewData["SiteConfig"] as Cactus.Model.Sys.SiteConfig;
+    var version = 1;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@site.SiteDescr">
+    <title>@site.SiteName</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png?_v=@version" />
+    <link href="~/Content/Pure0.6.0/pure-min.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/Pure0.6.0/grids-responsive-min.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/Pure0.6.0/pure-extend.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/Css/public.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/Admin/css/admin.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/wangEditor-2.0.1/css/wangEditor.min.css?_v=@version" rel="stylesheet" />
+    <link href="~/Content/Font-Awesome-4.5.0/css/font-awesome.css?_v=@version" rel="stylesheet" />
+</head>
+<body>
+
+ <div id="layout" class="pure-g">
+        <div class="left-layout pure-u-1-8">
+            <div id="menu-tree">
+                <!--begin-->
+                <div class="pure-menu">
+                    <span class="pure-menu-heading">
+                        <div class="logo-img"></div>
+                        <div class="logo-font">@site.SiteName-后台管理</div>
+                    </span>
+                    <ul class="pure-menu-list">
+                        @{ var m_power =Power.PowerGroupList.Where(tt=>tt.IsShow==true).ToList(); }
+                        @for (int i = 0; i < m_power.Count(); i++)
+                        { 
+                        
+                        <li class="pure-menu-item">
+                            <a href="javascript:;" class="pure-menu-link pure-menu-main" >
+                            <img class="tool-img" src="/Content/Tool/tool_@(i+1).png" /><span class="tool-font">@m_power[i].GroupName</span>
+                            </a>
+                            @{
+                            var powerlist = m_power[i].PowerList.Where(t=>t.IsShow==true).ToList();
+                            var count = powerlist.Count();
+                            }
+                            @if (count>0)
+                            {
+                                <ul class="pure-menu-list pure-menu-child">
+                                    @for (int j = 0; j < count; j++)
+                                    {
+                                
+                                        <li class="pure-menu-item">
+                                            <a href="javascript:;" class="pure-menu-link" url-target="@powerlist[j].ParamStr">
+                                                <img class="tool-img" src="/Content/Tool/tool_@(i+1).png"><span class="tool-font">@powerlist[j].Name</span>
+                                            </a>
+                                        </li>
+                                
+                                    }
+                                </ul>
+                            }
+                        </li>
+                        
+                        }
+                        @* <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="/Admin/Sys/Index">
+                            <img class="tool-img" src="/Content/Tool/tool_2.png" /><span class="tool-font">系统管理</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="/Admin/Sys/Index">
+                            <img class="tool-img" src="/Content/Tool/tool_3.png" /><span class="tool-font">应用二</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="/Admin/Sys/Index333">
+                            <img class="tool-img" src="/Content/Tool/tool_4.png" /><span class="tool-font">应用三</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="">
+                            <img class="tool-img" src="/Content/Tool/tool_5.png" /><span class="tool-font">应用四</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="">
+                            <img class="tool-img" src="/Content/Tool/tool_6.png" /><span class="tool-font">应用五</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="">
+                            <img class="tool-img" src="/Content/Tool/tool_7.png" /><span class="tool-font">应用六</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="">
+                            <img class="tool-img" src="/Content/Tool/tool_8.png" /><span class="tool-font">应用七</span></a></li>
+                        <li class="pure-menu-item"><a href="javascript:;" class="pure-menu-link" url-target="">
+                            <img class="tool-img" src="/Content/Tool/tool_9.png" /><span class="tool-font">应用八</span></a></li>*@
+                    </ul>
+                    <div class="pure-menu-heading">
+                        <div class="copyright-font">@site.SiteCopyRight</div></div>
+                </div>
+                <!--end-->
+            </div>
+        </div>
+        <div class="right-layout pure-u-7-8">
+            <div id="nav">
+                <!--begin-->
+                    <div id="nav-tree" class="pure-menu pure-menu-horizontal pure-menu-fixed">
+                        <ul class="pure-menu-list">
+                            <li class="pure-menu-item">
+                                <img src="@loginUser.Avatar" width="48px" height="48px" style="border-radius:24px;border:1px solid #fff;">
+                            </li>
+                            <li class="pure-menu-item pure-menu-disabled">登录用户：@loginUser.NickName</li>
+                            <li class="pure-menu-item"><a href="javascript:;" onclick="loadContent_Jq('main-content', '/Admin/Sys/CenterUser');"  class="pure-menu-link" >个人中心</a></li>
+                            <li class="pure-menu-item"><a href="javascript:;" onclick="Logout();" class="pure-menu-link">退出</a></li>
+                        </ul>
+                    </div>
+                <!--end-->
+            </div>
+            <div id="main-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+<!--公共load begin-->
+<div class="pure-mask"></div>
+<div class="pure-dialog" id="pure-dialog-load">
+    <div class="pure-u-1 pure-dialog-head">
+        <div class="pure-dialog-title">提示</div>
+        <div class="pure-dialog-close"></div>
+    </div>
+    <div class="pure-u-1 pure-dialog-hint">数据加载中</div>
+</div>
+<!--公共load end-->
+    <script src="~/Content/Js/jquery-1.7.2.min.js?_v=@version"></script>
+    <script src="~/Content/Js/jquery.tmpl.js?_v=@version"></script>
+    <script src="~/Content/Js/utils.js?_v=@version"></script>
+    <script src="~/Content/Js/jquery.upload2.js?_v=@version"></script>
+    <script src="~/Content/Pure_Js/dialog.js?_v=@version"></script>
+    <script src="~/Content/Pure_Js/paginator.js?_v=@version"></script>
+    <script src="~/Content/Admin/js/admin_public.js?_v=@version"></script>
+    <script src="~/Content/wangEditor-2.0.1/js/wangEditor.min.js?_v=@version"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#menu-tree .pure-menu-link[url-target]').bind('click', function () {
+                var url = $(this).attr('url-target');
+                loadContent_Jq('main-content', url);
+            });
+            $('#menu-tree .pure-menu-main').bind('click', function () {
+
+                if ($(this).next().is(":hidden")) {
+                    $(this).next().show();
+                } else {
+                    $(this).next().hide();
+                }
+            });
+        })
+        function Logout() {
+            if (confirm("是否退出")) {
+                window.location = "/Admin/Sys/Logout";
+            }
+        }
+    </script>
+</body>
+</html>

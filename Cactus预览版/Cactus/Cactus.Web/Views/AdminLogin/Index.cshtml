@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆页</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png?_v=1" />
+    <link href="/Content/Pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="/Content/Css/public.css" rel="stylesheet" />
+    <link href="/Content/Pure0.6.0/grids-responsive-min.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            background-color: rgb(231,255,231);
+            overflow-y: hidden;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        form {
+            margin: 150px auto;
+            width: 300px;
+        }
+        .code {
+            border-radius: 4px;
+            display: block;
+            height: 40px;
+            width: 140px;
+            border: 1px solid #ccc;
+        }
+        .t-height {
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <form class="pure-form pure-g" action="" id="signupForm">
+        @Html.AntiForgeryToken()
+        <div class="pure-u-1-1">
+            <img src="/Content/Blog/img/cat_teacher01.png" style="width: 100%; height: inherit;" />
+        </div>
+        <fieldset class="pure-group pure-u-1">
+            <input name="username" id="username" type="text" class="pure-input-1" placeholder="用户名" tabindex="1"/>
+            <input name="password" id="password" type="password" class="pure-input-1" placeholder="密码" tabindex="2"/>
+        </fieldset>
+        <div class="pure-u-1-2">
+            <img class="code t-height" src="/AdminLogin/VCode?k=1111" onClick="this.src+=Math.random()" alt="验证码">
+        </div>
+        <div class="pure-u-1-2">
+            <input class="pure-input-1 t-height" type="text" name="vcode" id="vcode" placeholder="验证码" tabindex="3">
+        </div>
+        <div class="pure-group pure-input-1">
+            <button type="button" id="btn" class="pure-button pure-input-1 pure-button-primary" tabindex="4">登 录</button>
+        </div>
+    </form>
+    <script src="~/Content/Js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#btn').bind("click", Login);
+            $('body').bind("keypress", function (e) {
+
+                if (e.keyCode == 13) {
+                    $('#btn').click();
+                }
+
+            })
+        })
+        function Login() {
+            if ($('#username').val() == '') { alert('请填写用户名'); return; }
+            if ($('#password').val() == '') { alert('请填写密码');  return; }
+            if ($('#vcode').val() == '') { alert('请填写验证码'); return; }
+            var param = $("#signupForm").serialize();
+            $.ajax({
+                url: "/AdminLogin/Index",
+                type: "post",
+                dataType: "json",
+                data: param,
+                success: function (obj) {
+                    if (obj.pass) {                        
+                        window.location = "/Admin";
+                        alert('登陆成功');
+                    } else {
+                        alert(obj.error)
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

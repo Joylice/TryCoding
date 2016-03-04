@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form class="pure-form pure-search pure-g">
+    <input type="text" placeholder="输入你的关键字">
+    <button type="submit" class="pure-button pure-button-primary">搜索</button>
+</form>
+
+
+<div class="posts" >
+
+    <div id="section_list">
+
+    </div>
+
+    <div class="pure-g pageArea">
+        <div class="new-pagenav">
+            <div class="new-pagenav-left"><a href="#" class="pure-link" style="display: block;"><i class="fa fa-chevron-left fa-m-right"></i>上一页</a></div>
+            <div class="new-pagenav-center">
+                1/100页
+            </div>
+            <div class="new-pagenav-right"><a href="#" class="pure-link" style="display: block;">下一页<i class="fa fa-chevron-right fa-m-left"></i></a></div>
+        </div>
+    </div>
+</div>
+@section JavaScript{
+    <script id="detail-section" type="text/x-jquery-tmpl">
+        {{each(i,detail) details}}
+        <section class="post">
+            <header class="post-header">
+                <img class="post-avatar" alt="${detail.author}" height="48" width="48" src="${detail.avatar}">
+
+                <h2 class="post-title">${detail.title}</h2>
+
+                <p class="post-meta">
+                    由 <a class="post-author" href="javascript:;">${detail.author}</a> 发表于 ${detail.time}, 阅读(${detail.pv}) 
+                    {{each(j,tag) detail.tags}}
+                    <a class="post-category" href="javascript:;">${tag.name}</a>
+                    {{/each}}
+                </p>
+            </header>
+
+            <div class="post-description">
+                {{html unescape(detail.content)}}
+            </div>
+        </section>
+        {{/each}}
+    </script>
+    <script type="text/javascript">
+        var eachData = {
+            details: [
+                { title: '标题1', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '1428', tags: [{ name: 'css' }], content: escape($('.pageArea').html()) },
+                { title: '标题2', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '2428', tags: [{ name: 'css' }, { name: 'javascript' }], content: '' },
+                { title: '标题3', avatar: '/Content/Images/1111-avatar.jpg', author: '1111', time: '2016-01-28 08:00', pv: '3428', tags: [{ name: 'css' }, { name: 'javascript' }, { name: 'UI' }], content: '' } ]
+        };
+        $('#section_list').html($("#detail-section").tmpl(eachData))
+    </script>
+    
+}

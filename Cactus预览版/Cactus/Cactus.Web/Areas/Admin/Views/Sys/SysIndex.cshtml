@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+    var config = ViewData["SiteConfig"] as Cactus.Model.Sys.SiteConfig;
+}
+<form class="pure-form  pure-form-aligned" id="siteForm">
+        <fieldset>
+            <legend>网站参数</legend>
+            <div class="pure-control-group">
+                <label>网站名字</label>
+                <input name="SiteName" type="text" placeholder="网站名字" value="@config.SiteName" />
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点标题</label>
+                <input name="SiteTitle" type="text" placeholder="站点标题" value="@config.SiteTitle" />
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点备案号</label>
+                <input name="SiteCrod" type="text" placeholder="站点备案号" value="@config.SiteCrod" />
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点关键字</label>
+                <textarea rows="2" cols="20"  name="SiteKeywords" placeholder="站点关键字" style="resize: none;">@config.SiteKeywords</textarea>
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点描述</label>
+                <textarea rows="3" cols="20"  name="SiteDescr" placeholder="站点描述" style="resize: none;">@config.SiteDescr</textarea>
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点统计代码</label>
+                <textarea rows="3" cols="20"  name="SiteCountCode" placeholder="站点统计代码" style="resize: none;">@config.SiteCountCode</textarea>
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-control-group">
+                <label>站点版权信息</label>
+                <textarea rows="3" cols="20"  name="SiteCopyRight" placeholder="站点版权信息" style="resize: none;">@config.SiteCopyRight</textarea>
+                <div class="pure-error pure-c-error"></div>
+            </div>
+            <div class="pure-controls">
+                <label class="pure-checkbox">
+                    <input name="SiteStatus" type="radio" @(config.SiteStatus?"":"checked") value="false">
+                    关闭站点
+                    <input name="SiteStatus" type="radio" @(config.SiteStatus?"checked":"") value="true">
+                    打开站点
+                </label>
+                <button type="button" name="site" class="pure-button pure-button-primary">保存</button>
+            </div>
+        </fieldset>
+    </form>
+
+<script type="text/javascript">
+    $(function () {
+        $('button[name=site]').bind('click', function () {
+
+            var param = $("#siteForm").serialize();
+            $.ajax({
+                url: "/Admin/Sys/SysSave",
+                type: "post",
+                data: param,
+                success: function (obj) {
+                    if (obj.pass) {
+                        alert('保存成功');
+                    } else {
+                        alert(obj.error)
+                    }
+                }
+            });
+
+        });
+    });
+</script>

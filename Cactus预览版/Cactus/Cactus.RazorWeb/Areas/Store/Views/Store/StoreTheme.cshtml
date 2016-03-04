@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+    var StoreUser = ViewData["StoreUser"] as Cactus.Model.Store.Store;
+}
+<script>
+    function validateForm() {
+        var b = $("#storeTheme").validate({
+            onsubmit:false,
+            errorPlacement: function (error, element) {
+                $(element).tipso({
+                    useTitle: false,
+                    speed: 400,
+                    position: 'right',
+                    onShow: function () {
+                        //$(element).tipso('destroy');
+                        //alert($(error).html())
+                    },
+                    onHide: function () {
+                        $(element).tipso('destroy');
+                        //alert($(error).html())
+                    }
+                });
+                $(element).tipso('update', 'content', $(error).html());
+                $(element).tipso('show');
+                return false;
+            }
+        }).form();
+
+        return b;
+    }
+    function successForm(data, status, xhr) {
+        if (data.pass) {
+            loadContent(data.url)
+        } else {
+            alert(data.error)
+        }
+    }
+</script>
+<form id="storeTheme" class="pure-form pure-form-stacked" 
+    data-ajax="true" 
+    data-ajax-url="/Store/Store/StoreTheme" 
+    data-ajax-loading="#load" 
+    data-ajax-loading-duration="1000" 
+    data-ajax-method="post" 
+    data-ajax-confirm="确定修改" 
+    data-ajax-begin="validateForm"
+    data-ajax-success="successForm"
+    data-ajax-type="json">
+    <fieldset>
+        <legend>样式美化</legend>
+
+        <label>样式</label>
+        <textarea 
+            name="themeCss" placeholder="请输入样式" data-val="true" 
+            >@(StoreUser.ThemeCss)</textarea>
+        
+        <button type="submit" class="pure-button pure-button-primary">修改</button>
+    </fieldset>
+</form>

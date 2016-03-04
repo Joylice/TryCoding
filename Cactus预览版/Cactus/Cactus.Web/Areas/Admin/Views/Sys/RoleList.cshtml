@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+    var list = ViewData["RoleList"] as List<Cactus.Model.Sys.Role>;
+}
+
+<div class="pure-g">
+    <a href="javascript:;" onclick="loadContent_Jq('main-content', '/Admin/Sys/RoleAdd');" class="pure-link pure-link-red">添加角色</a>
+</div>
+
+<table class="pure-table pure-table-bordered" id="role">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>角色名</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (list != null)
+        { 
+            foreach (var item in list)
+            { 
+            <tr>
+                <td>@item.Role_Id</td>
+                <td>@item.RoleName</td>
+                <td>
+                    <a href="javascript:;" class="pure-link pure-link-default" name="upd" data-value="@item.Role_Id">编辑</a>
+                    <a href="javascript:;" class="pure-link pure-link-red" name="del" data-value="@item.Role_Id">删除</a>
+                </td>
+            </tr>
+            }
+        }else{
+            <tr ><td colspan="3">(暂无相关记录)</td></tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $('#role a[name=upd]').bind('click', function () {
+            var id = $(this).attr('data-value');
+            loadContent_Jq('main-content', '/Admin/Sys/RoleUpdate/' + id);
+
+        });
+
+        $('#role a[name=del]').bind('click', function () {
+            var $target = $(this);
+            if (confirm("是否确定删除")) {
+                var id = $target.attr('data-value');
+                $.ajax({
+                    url: "/Admin/Sys/RoleDelete",
+                    type: "post",
+                    dataType: "json",
+                    data: { ids: id },
+                    success: function (obj) {
+                        if (obj.pass) {
+                            //alert('ok');
+                            //window.location = "/Admin";
+                            $target.parent().parent().remove();
+                        } else {
+                            alert(obj.error)
+                        }
+                    }
+                });
+            }
+
+        });
+    })
+</script>
+

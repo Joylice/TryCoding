@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>灯箱</title>
+    <link href="pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="css/public.css" rel="stylesheet" />
+    <link href="pure0.6.0/pure-extend.css" rel="stylesheet" />
+    <style type="text/css">
+     .pure-lightbox img {
+            border: 0px none;
+            max-width: 100%;
+            max-height:100%;
+            height: auto;
+            padding:0;
+            margin:0;
+            display: block;
+        }
+    .pure-lightbox {
+    z-index: 999;
+    position: absolute;
+    width: auto;
+    height: auto;
+    background-color: #EAEAEA;
+    overflow: hidden;
+    display: none;
+    }
+    </style>
+</head>
+<body>
+    
+    <div class="pure-mask"></div>
+    <div class="pure-lightbox" style="display:block;">
+        <div class="pure-u-1">
+    <img 
+        data-lightbox="example-set"
+        data-lightbox-title="Click anywhere outside the image or the X to the right to close."
+        data-lightbox-url="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg"
+        src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg"
+        alt="" />        
+        </div>
+    </div>
+    <script src="js/jquery-1.7.2.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+    List<Cactus.Model.Store.Category> al = ViewData["CategoryList"] as List<Cactus.Model.Store.Category>;
+}
+<script>
+    function validateForm() {
+        var b = $("#productadd").validate({
+            onsubmit:false,
+            errorPlacement: function (error, element) {
+                $(element).tipso({
+                    useTitle: false,
+                    speed: 400,
+                    position: 'right',
+                    onShow: function () {
+                        //$(element).tipso('destroy');
+                        //alert($(error).html())
+                    },
+                    onHide: function () {
+                        $(element).tipso('destroy');
+                        //alert($(error).html())
+                    }
+                });
+                $(element).tipso('update', 'content', $(error).html());
+                $(element).tipso('show');
+                return false;
+            }
+        }).form();
+
+        //.element($("[data-val=true]"));
+        return b;
+    }
+    function successForm(data, status, xhr) {
+        if (data.pass) {
+            loadContent(data.url)
+        } else {
+            alert(data.error)
+        }
+    }
+</script>
+<form id="productadd" class="pure-form pure-form-stacked" 
+    data-ajax="true" 
+    data-ajax-url="/Store/Store/ProductAdd" 
+    data-ajax-loading="#load" 
+    data-ajax-loading-duration="1000" 
+    data-ajax-method="post" 
+    data-ajax-confirm="确定添加" 
+    data-ajax-begin="validateForm"
+    data-ajax-success="successForm"
+    data-ajax-type="json">
+    <fieldset>
+        <legend>添加商品</legend>
+
+        <label>商品名称</label>
+        <input name="Name" type="text" placeholder="请输入商品名" 
+            data-rule-required="true"  
+            data-msg-required="用户名不能为空" 
+            data-rule-stringLength="20" 
+            data-msg-stringLength="用户名长度为20">
+
+        <label>用户价格</label>
+        <input name="Price" type="text" placeholder="请输入价格"  
+            data-rule-required="true"  
+            data-msg-required="价格不能为空">
+
+        <label>库存</label>
+        <input name="Num" type="text" placeholder="请输入库存"  
+            data-rule-required="true"  
+            data-msg-required="库存不能为空">
+
+
+        <label>折扣（1-100）范围</label>
+        <input name="Agio" type="text" placeholder="请输入折扣"  
+            data-rule-required="true"
+            data-msg-required="折扣不能为空">
+        
+        <label>商品描述</label>
+        <textarea name="Des" placeholder="请输入描述"  
+            data-rule-required="true"
+            data-msg-required="描述不能为空"></textarea>
+
+        <label>商品状态</label>
+        <select name="Status">
+            <option value="1" selected="selected">上架</option>
+            <option value="2">下架</option>
+            <option value="3">推荐</option>
+         </select> 
+
+         <label>分类</label>
+         <select name="CategoryId">
+            @foreach(var i in al){
+                <option value="@(i.Category_Id)">@(i.Name)</option>
+            }
+         </select> 
+
+        <button type="submit" class="pure-button pure-button-primary">添加</button>
+    </fieldset>
+</form>

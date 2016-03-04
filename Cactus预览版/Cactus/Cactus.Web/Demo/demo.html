@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<!--缩放比例以及允许缩放-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!--格式的检测，电话，邮箱-->
+<meta name="format-detection" content="telephone=no, email=no" />
+<!--是否显示苹果工具栏和菜单栏-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--状态栏样式-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>按钮扩展</title>
+    <link href="Pure0.6.0/pure-min.css" rel="stylesheet" />
+    <link href="Css/public.css" rel="stylesheet" />
+    <link href="Pure0.6.0/grids-responsive-min.css" rel="stylesheet" />
+    <link href="Pure0.6.0/pure-extend.css" rel="stylesheet" />
+</head>
+<body>
+<p>按钮</p>
+<hr/>
+<button class="button-success pure-button">Success Button</button>
+<button class="button-error pure-button">Error Button</button>
+<button class="button-warning pure-button">Warning Button</button>
+<button class="button-secondary pure-button">Secondary Button</button>
+<hr/>
+<a class="pure-button pure-button-success " href="#">A Primary Button</a> <a class="pure-button pure-button-warning" href="#">A Primary Button</a> <a class="pure-button pure-button-secondary" href="#">A Primary Button</a> <a class="pure-button pure-button-error" href="#">A Primary Button</a>
+<hr/>
+<ul class="pure-paginator">
+  <li><a class="pure-button prev" href="#">«</a></li>
+  <li><a class="pure-button" href="#">1</a></li>
+  <li><a class="pure-button pure-button-active" href="#">2</a></li>
+  <li><a class="pure-button pure-button-warning" href="#">3</a></li>
+  <li><a class="pure-button" href="#">4</a></li>
+  <li><a class="pure-button pure-button-warning pure-button-active" href="#">5</a></li>
+  <li><a class="pure-button next" href="#">»</a></li>
+</ul>
+<hr/>
+<p>表单扩展</p>
+<hr/>
+<form class="pure-form">
+  <div class="pure-input-group">
+    <div class="pure-input-group-addon">$</div>
+    <input type="text" class="pure-input-1"  placeholder="Amount"/>
+    <div class="pure-input-group-addon">.00</div>
+  </div>
+  <hr/>
+  <div class="pure-input-group">
+    <input type="text" class="pure-input-1"  placeholder="Amount"/>
+    <div class="pure-input-group-addon">.00</div>
+  </div>
+  <hr/>
+  <div class="pure-input-group">
+    <div class="pure-input-group-addon">$</div>
+    <input type="text" class="pure-input-1"  placeholder="Amount"/>
+  </div>
+</form>
+<hr/>
+<div class="pure-caret"></div>
+<hr>
+<div class="pure-menu pure-menu-horizontal">
+  <ul class="pure-menu-list">
+    <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+    <li class="pure-menu-item pure-menu-allow-hover"> <a href="#" id="menuLink1" class="pure-menu-link">Contact
+      <div class="pure-caret"></div>
+      </a>
+      <ul class="pure-menu-children">
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Email</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Twitter</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tumblr Blog</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<hr/>
+<ul class="pure-tab">
+  <li><a class="pure-button " href="#">111</a></li>
+  <li><a class="pure-button " href="#">222</a></li>
+  <li><a class="pure-button pure-tab-active" href="#">333</a></li>
+  <li><a class="pure-button " href="#">444</a></li>
+  <li><a class="pure-button " href="#">555</a></li>
+</ul>
+<hr/>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<script>
+    function validateForm() {
+        var b = $("#centerpwd").validate({
+            onsubmit: false,
+            errorPlacement: function (error, element) {
+                $(element).tipso({
+                    useTitle: false,
+                    speed: 400,
+                    position: 'right',
+                    onShow: function () {
+                        //$(element).tipso('destroy');
+                        //alert($(error).html())
+                    },
+                    onHide: function () {
+                        $(element).tipso('destroy');
+                        //alert($(error).html())
+                    }
+                });
+                $(element).tipso('update', 'content', $(error).html());
+                $(element).tipso('show');
+                return false;
+            }
+        }).form();
+
+        //.element($("[data-val=true]"));
+        return b;
+    }
+    function successForm(data, status, xhr) {
+        if (data.pass) {
+            loadContent(data.url)
+        } else {
+            alert(data.error)
+        }
+    }
+</script>
+<form id="centerpwd" class="pure-form pure-form-stacked"
+    data-ajax="true"
+    data-ajax-url="/Admin/Admin/CenterAlterPwd"
+    data-ajax-loading="#load"
+    data-ajax-loading-duration="1000"
+    data-ajax-method="post"
+    data-ajax-confirm="确定修改"
+    data-ajax-begin="validateForm"
+    data-ajax-success="successForm"
+    data-ajax-type="json">
+    <fieldset>
+        <legend>修改个人密码</legend>
+
+        <label>旧密码</label>
+        <input name="pwded" type="password" placeholder="请输入旧密码" data-val="true" data-rule-required="true" data-msg-required="旧密码不能为空" data-rule-stringlength="20" data-msg-stringlength="旧密码长度为20">
+        <label>新密码</label>
+        <input name="pwding" type="password" placeholder="请输入新密码" data-val="true" data-rule-required="true" data-msg-required="新密码不能为空" data-rule-stringlength="20" data-msg-stringlength="新密码长度为20">
+
+        <button type="submit" class="pure-button pure-button-primary">提交</button>
+    </fieldset>
+</form>

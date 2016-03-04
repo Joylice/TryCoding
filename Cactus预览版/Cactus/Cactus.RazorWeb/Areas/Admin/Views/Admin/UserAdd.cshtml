@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+    List<Cactus.Model.Sys.Role> al = ViewData["RoleList"] as List<Cactus.Model.Sys.Role>;
+}
+<script>
+    function validateForm() {
+        var b = $("#useradd").validate({
+            onsubmit:false,
+            errorPlacement: function (error, element) {
+                $(element).tipso({
+                    useTitle: false,
+                    speed: 400,
+                    position: 'right',
+                    onShow: function () {
+                        //$(element).tipso('destroy');
+                        //alert($(error).html())
+                    },
+                    onHide: function () {
+                        $(element).tipso('destroy');
+                        //alert($(error).html())
+                    }
+                });
+                $(element).tipso('update', 'content', $(error).html());
+                $(element).tipso('show');
+                return false;
+            }
+        }).form();
+
+        //.element($("[data-val=true]"));
+        return b;
+    }
+    function successForm(data, status, xhr) {
+        if (data.pass) {
+            loadContent(data.url)
+        } else {
+            alert(data.error)
+        }
+    }
+</script>
+<form id="useradd" class="pure-form pure-form-stacked" 
+    data-ajax="true" 
+    data-ajax-url="/Admin/Admin/UserAdd" 
+    data-ajax-loading="#load" 
+    data-ajax-loading-duration="1000" 
+    data-ajax-method="post" 
+    data-ajax-confirm="确定添加" 
+    data-ajax-begin="validateForm"
+    data-ajax-success="successForm"
+    data-ajax-type="json">
+    <fieldset>
+        <legend>添加用户</legend>
+
+        <label>用户名</label>
+        <input name="Name" type="text" placeholder="请输入用户名" data-rule-required="true"  data-msg-required="用户名不能为空" data-rule-stringLength="20" data-msg-stringLength="用户名长度为20">
+
+        <label>用户密码</label>
+        <input name="Password" type="text" placeholder="请输入密码"  data-rule-required="true"  data-msg-required="密码不能为空">
+
+        <label>再次密码</label>
+        <input name="Password" type="text" placeholder="再输入密码"  data-rule-required="true"  data-msg-required="密码不能为空">
+
+
+        <label>昵称</label>
+        <input name="NickName" type="text" placeholder="请输入昵称"  data-rule-required="true"  data-msg-required="昵称不能为空" data-rule-stringLength="20" data-msg-stringLength="昵称长度为20">
+
+        <label>手机号</label>
+        <input name="Phone" type="text" placeholder="请输入手机号" >
+
+        <label>QQ号</label>
+        <input name="Qq" type="text" placeholder="请输入QQ号">
+
+        <label>邮箱</label>
+        <input name="Email" type="text" placeholder="请输入邮箱">
+
+
+         <label>角色</label>
+         <select name="RoleId">
+            @foreach(var i in al){
+                <option value="@(i.Role_Id)">@(i.RoleName)</option>
+            }
+         </select> 
+
+        <button type="submit" class="pure-button pure-button-primary">添加</button>
+    </fieldset>
+</form>

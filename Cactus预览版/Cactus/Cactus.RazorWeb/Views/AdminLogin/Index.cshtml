@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理登陆页</title>
+@*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Public/pure0.6.0/pure-min.css")"/>*@
+    @Styles.Render("~/Content/pure")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/unobtrusive")
+    @Scripts.Render("~/bundles/validate")
+    @Scripts.Render("~/bundles/config")
+    @Scripts.Render("~/bundles/tipso")
+    @Styles.Render("~/Content/tipso")
+    
+    
+<script type="text/javascript">
+    $(function () {
+        
+    $("#signupForm").validate({
+        //debug: true,
+        onsubmit: true,// 是否在提交是验证
+        onfocusout: false,// 是否在获取焦点时验证
+        onkeyup: false,// 是否在敲击键盘时验证
+        errorPlacement: function (error, element) {
+            //error.appendTo(element.parent());
+            $(element).tipso({
+                useTitle: false,
+                speed: 400,
+                position: 'right',
+                onShow: function () {
+                    //$(element).tipso('destroy');
+                    //alert($(error).html())
+                },
+                onHide: function () {
+                    $(element).tipso('destroy');
+                    //alert($(error).html())
+                }
+            });
+            $(element).tipso('update', 'content', $(error).html());
+            $(element).tipso('show');
+
+            //alert($(error).html())
+            return false;
+        },
+        submitHandler: function(form) 
+        {      
+            //ok
+            var param = $("#signupForm").serialize();
+            $.ajax({
+                url: "/AdminLogin/Index",
+                type: "post",
+                dataType: "json",
+                data: param,
+                success: function (obj) {
+                    if (obj.pass) {
+                        //alert('ok');
+                        window.location = "/admin";
+                    } else {
+                        alert(obj.error)
+                    }
+                }
+            });
+        }  
+    });
+})
+
+</script>
+<style>
+body{
+	background: url(@Url.Content("~/Content/Admin/images/bj.png")) no-repeat;
+	font-family: "Microsoft YaHei";
+	overflow-y:hidden;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;	
+}
+form {
+	margin: 150px auto;
+	width: 300px;
+}
+</style>
+</head>
+<body>
+<form id="signupForm" class="pure-form pure-g" action="/" method="post">
+    @Html.AntiForgeryToken()
+  <fieldset class="pure-group pure-u-1">
+    <input name="username" type="text" class="pure-input-1" placeholder="用户名" data-rule-required="true"  data-msg-required="用户名不能为空" >
+    <input name="password" type="password" class="pure-input-1" placeholder="密码" data-rule-required="true"  data-msg-required="密码不能为空" >
+  </fieldset>
+  <div class="pure-group pure-input-1">
+    <div class="pure-u-1-2">
+        <img src="/AdminLogin/VCode?p=1" height="40" width="140" onClick="this.src+=parseInt(Math.random()*9+1)" alt="图片看不清？点击重新得到验证码" style="cursor:pointer">
+    </div>
+    <div class="pure-u-1-2">
+      <input type="text" name="vcode" class="pure-input-1" placeholder="验证码" data-rule-required="true"  data-msg-required="验证码不能为空" data-rule-stringLength="4" data-msg-stringLength="验证码长度为4" >
+    </div>
+  </div>
+  <div class="pure-group pure-input-1">
+    <button type="submit" class="pure-button pure-input-1 pure-button-primary" >登录</button>
+  </div>
+</form>
+</body>
+</html>
+

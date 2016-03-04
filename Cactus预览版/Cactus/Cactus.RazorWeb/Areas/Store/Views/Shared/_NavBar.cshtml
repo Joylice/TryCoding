@@ -1,0 +1,18 @@
+﻿@{
+    var LoginUser = ViewData["StoreUser"] as Cactus.Model.Store.Store;
+
+}
+<div class="pure-menu pure-menu-horizontal nav-menu">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover"><a href="javascript:;" class="pure-menu-link nav">@LoginUser.Name<i class="fa fa-chevron-down"></i></a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item pure-menu-selected">
+                    <a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Store/Store/CenterUser" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-th-list"></i>个人资料</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Store/Store/CenterAlterPwd" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-key"></i>修改密码</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a data-ajax-update=".down-content" data-ajax="true" data-ajax-method="get" data-ajax-url="/Store/Store/CenterAlterFace" data-ajax-loading="#load" data-ajax-success="$('.down-content').unobtrusive('resetbind')" href="javascript:;" class="pure-menu-link nav"><i class="fa fa-file-image-o"></i>更换头像</a></li>
+            </ul>
+        </li>
+        <li class="pure-menu-item pure-menu-selected ">
+            <a href="javascript:;" class="pure-menu-link nav" data-ajax-mode="" data-ajax="true" data-ajax-method="get" data-ajax-url="/Store/Store/Logout" data-ajax-loading="#load" data-ajax-loading-duration="1000" data-ajax-confirm="是否真的退出！" data-ajax-type="json" data-ajax-success="if(data.success){alert(data.msg);location.reload();}"><i class="fa fa-power-off"></i>退出</a></li>
+    </ul>
+</div>

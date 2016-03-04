@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+<script type="text/javascript">
+    $(function () {
+        searchForm("");
+        //$('.down-content form button').bind("click", function () {
+        //    console.log("where:"+$('.down-content form input[type=text]').val())
+        //    searchForm($('.down-content form input[type=text]').val())
+        //})
+        $('#rolelist input[name=aid_g][type=checkbox]').bind("click", function () {
+            $('#rolelist input[name=aid][type=checkbox]').each(function () {
+                $(this).attr("checked", !($(this).is(':checked')))
+            })
+        })
+    })
+    function searchForm(where) {
+        PageTable(10, 1, "#rolelist", "/Admin/Admin/RoleList", where,
+                    [{
+                        field: "Role_Id", formatter: function (val, rec) {
+                            return "<input name=\"aid\" type=\"checkbox\" value=\""+val+"\">";
+                        }
+                    },
+                    { field: "Role_Id" },
+                    { field: "RoleName" },
+                    {
+                        field: "Role_Id", formatter: function (val, rec) {
+                            return "<a href=\"javascript:;\" onclick=\"loadContent('/Admin/Admin/RoleUpdate/" + val + "',true)\">修改</a>";
+                        }
+                    }])
+    }
+
+</script>
+<div style="margin: 5px 0px 5px 0px;">
+    <a href="javascript:;" class="button-success pure-button"
+        data-ajax="true"
+        data-ajax-before="SetDel"
+        data-ajax-url="/Admin/RoleDelete"
+        data-ajax-loading="#load"
+        data-ajax-confirm="确定删除"
+        data-ajax-type="json"
+        data-ajax-success="if(data.pass){loadContent(data.url);}else{alert(data.error);}">删除</a>
+</div>
+<table id="rolelist" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th><input name="aid_g" type="checkbox" title="全选/反选"></th>
+            <th>#</th>
+            <th>角色名</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>

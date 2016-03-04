@@ -1,0 +1,72 @@
+﻿<script type="text/javascript">
+    $(function () {
+        searchForm("")
+        $('#productList input[name=aid_g][type=checkbox]').bind("click", function () {
+            $('#productList input[name=aid][type=checkbox]').each(function () {
+                $(this).attr("checked", !($(this).is(':checked')))
+            })
+        })
+    })
+    function searchForm(where) {
+        PageTable(10, 1, "#productList", "/Store/Store/ProductList", where,
+                    [{
+                        field: "Product_Id", formatter: function (val, rec) {
+                            return "<input name=\"aid\" type=\"checkbox\" value=\""+val+"\">";
+                        }
+                    },
+                    { field: "Name" },
+                    { field: "Price" },
+                    { field: "Agio" },
+                    { field: "Num" },
+                    { field: "CategoryName" },
+                    { field: "AddTime" },
+                    {
+                        field: "Status", formatter: function (val, rec) {
+                            //var str = "";
+                            switch (val) {
+                                case 1: val = "上架"; break;
+                                case 2: val = "下架"; break;
+                                case 3: val = "推荐"; break;
+                            }
+                            
+                            return val;
+                        }
+                    },
+                    {
+                        field: "Product_Id", formatter: function (val, rec) {
+                            return "<a href=\"javascript:;\" onclick=\"loadContent('/Store/Store/ProductUpdate/" + val + "',true)\">修改</a>";
+                        }
+                    }])
+    }
+
+</script>
+<div style="margin:5px 0px 5px 0px;">
+    <a href="javascript:;" class="button-success pure-button"
+        data-ajax="true"
+        data-ajax-before="SetDel"
+        data-ajax-url="/Store/Store/ProductDelete"
+        data-ajax-loading="#load"
+        data-ajax-confirm="确定删除"
+        data-ajax-type="json"
+        data-ajax-success="if(data.pass){loadContent(data.url);}else{alert(data.error);}">删除</a>
+
+</div>
+<table id="productList" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th><input name="aid_g" type="checkbox" title="全选/反选"></th>
+            <th>商品名</th>
+            <th>价格</th>
+            <th>折扣</th>
+            <th>库存</th>
+            <th>分类</th>
+            <th>添加时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>

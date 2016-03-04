@@ -1,0 +1,5 @@
+D:\vs2010Workspace\Cactus\Cactus.Model\bin\Debug\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.Model\bin\Debug\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.Model\obj\Debug\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.Model\obj\Debug\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.Model\obj\Debug\Cactus.Model.csprojResolveAssemblyReference.cache

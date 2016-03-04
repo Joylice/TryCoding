@@ -1,0 +1,24 @@
+﻿* {
+    box-sizing: border-box;
+    /*font-family: Microsoft YaHei, 'Hiragino Sans GB', 'Microsoft Yahei', 微软雅黑, 宋体, Tahoma, Helvetica, STHeiti;*/
+    /*font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;*/
+    /*优化字体显示*/
+    font-family:"Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+    font-size:14px;
+}
+body {
+    overflow-x:hidden;
+}
+html, button, input, select, textarea, .pure-g [class*="pure-u"] {
+    letter-spacing: 0.01em;
+}
+.pure-g .pure-button {
+letter-spacing: 0;
+}
+.pure-g .pure-link {
+letter-spacing: 0;
+}
+.pure-form select {
+height:initial;
+}
+

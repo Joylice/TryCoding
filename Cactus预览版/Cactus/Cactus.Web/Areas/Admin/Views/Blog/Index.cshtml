@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<h1>editor 测试</h1>
+<div id="myeditor">
+    UserAdd
+</div>
+<script type="text/javascript">
+    $(function () {
+        editorSender();
+    });
+
+    function editorSender() {
+        // 阻止输出log
+        wangEditor.config.printLog = false;
+        var editor = new wangEditor('myeditor');
+        // 上传图片
+        editor.config.uploadImgUrl = '/upload';
+        // 设置 z-index
+        editor.config.zindex = 20000;
+        // 语言
+        editor.config.lang = wangEditor.langs['zh-cn'];
+        editor.create();
+    }
+</script>

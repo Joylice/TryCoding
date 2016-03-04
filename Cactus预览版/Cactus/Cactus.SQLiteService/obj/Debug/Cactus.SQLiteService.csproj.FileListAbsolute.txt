@@ -1,0 +1,15 @@
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.SQLiteService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.SQLiteService.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.Common.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.IService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.Model.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\System.Data.SQLite.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\System.Data.SQLite.Linq.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\MySql.Data.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.Common.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.IService.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\Cactus.Model.pdb
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\bin\Debug\System.Data.SQLite.xml
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\obj\Debug\Cactus.SQLiteService.csprojResolveAssemblyReference.cache
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\obj\Debug\Cactus.SQLiteService.dll
+D:\vs2010Workspace\Cactus\Cactus.SQLiteService\obj\Debug\Cactus.SQLiteService.pdb

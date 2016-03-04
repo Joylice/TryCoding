@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A5A5E1A0-8B6F-4AF5-A0FA-97D435482E7E}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cactus.Web</RootNamespace>
+    <AssemblyName>Cactus.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.Configuration.3.3.0\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Admin\css\admin.css" />
+    <Content Include="Content\Admin\img\logo.png" />
+    <Content Include="Content\Blog\css\blog.css" />
+    <Content Include="Content\Blog\img\cat_teacher00.jpeg" />
+    <Content Include="Content\Blog\img\cat_teacher01.png" />
+    <Content Include="Content\Css\error.css" />
+    <Content Include="Content\Blog\img\qsbk_shit32px.png" />
+    <Content Include="Content\Css\public.css" />
+    <Content Include="Content\Font-Awesome-4.5.0\css\font-awesome.css" />
+    <Content Include="Content\Font-Awesome-4.5.0\css\font-awesome.min.css" />
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\1111-avatar.jpg" />
+    <Content Include="Content\Images\cat.jpg" />
+    <Content Include="Content\Js\jquery.upload2.js" />
+    <Content Include="Content\Pure0.6.0\pure-extend\close_16px.png" />
+    <Content Include="Content\Images\yzm.png" />
+    <Content Include="Content\Admin\js\admin_public.js" />
+    <Content Include="Content\Js\IE.js" />
+    <Content Include="Content\Js\jquery-1.7.2.min.js" />
+    <Content Include="Content\Js\jquery.tmpl.js" />
+    <Content Include="Content\Blog\js\public.js" />
+    <Content Include="Content\Js\utils.js" />
+    <Content Include="Content\Pure0.6.0\grids-responsive-min.css" />
+    <Content Include="Content\Pure0.6.0\grids-responsive-old-ie-min.css" />
+    <Content Include="Content\Pure0.6.0\pure-extend.css" />
+    <Content Include="Content\Pure0.6.0\pure-min.css" />
+    <Content Include="Content\Pure_Js\paginator.js" />
+    <Content Include="Content\Tool\tool_1.png" />
+    <Content Include="Content\Tool\tool_10.png" />
+    <Content Include="Content\Tool\tool_2.png" />
+    <Content Include="Content\Tool\tool_3.png" />
+    <Content Include="Content\Tool\tool_4.png" />
+    <Content Include="Content\Tool\tool_5.png" />
+    <Content Include="Content\Tool\tool_6.png" />
+    <Content Include="Content\Tool\tool_7.png" />
+    <Content Include="Content\Tool\tool_8.png" />
+    <Content Include="Content\Tool\tool_9.png" />
+    <Content Include="Content\wangEditor-2.0.1\css\fonts\icomoon.svg" />
+    <Content Include="Content\wangEditor-2.0.1\css\wangEditor.css" />
+    <Content Include="Content\wangEditor-2.0.1\css\wangEditor.min.css" />
+    <Content Include="Content\wangEditor-2.0.1\js\wangEditor.js" />
+    <Content Include="Content\wangEditor-2.0.1\js\wangEditor.min.js" />
+    <Content Include="Demo\Admin\css\admin.css" />
+    <Content Include="Content\Pure_Js\dialog.js" />
+    <Content Include="favicon.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Demo\403.html" />
+    <Content Include="Demo\404.html" />
+    <Content Include="Demo\500.html" />
+    <Content Include="Demo\admin.html" />
+    <Content Include="Demo\Blog\css\blog.css" />
+    <Content Include="Demo\Images\1111-avatar.jpg" />
+    <Content Include="Demo\Blog\img\qsbk_shit32px.png" />
+    <Content Include="Demo\Css\public.css" />
+    <Content Include="Demo\demo.html" />
+    <Content Include="Demo\detail.html" />
+    <Content Include="Demo\dialog.html" />
+    <Content Include="Demo\favicon.png" />
+    <Content Include="Demo\Font-Awesome-4.5.0\css\font-awesome.css" />
+    <Content Include="Demo\Font-Awesome-4.5.0\css\font-awesome.min.css" />
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Demo\form01.html" />
+    <Content Include="Demo\HtmlPage1.html" />
+    <Content Include="Demo\Images\cat.jpg" />
+    <Content Include="Demo\Blog\img\cat_teacher00.jpeg" />
+    <Content Include="Demo\Blog\img\cat_teacher01.png" />
+    <Content Include="Demo\Images\close_16px.png" />
+    <Content Include="Demo\Images\yzm.png" />
+    <Content Include="Demo\index.html" />
+    <Content Include="Demo\Js\IE.js" />
+    <Content Include="Demo\Js\jquery-1.7.2.min.js" />
+    <Content Include="Demo\Js\jquery.tmpl.js" />
+    <Content Include="Demo\Js\public.js" />
+    <Content Include="Demo\lightbox.html" />
+    <Content Include="Demo\login.html" />
+    <Content Include="Demo\nav.html" />
+    <Content Include="Demo\Page.html" />
+    <Content Include="Demo\photo.html" />
+    <Content Include="Demo\Photo\1198495347bb2d237fo.jpg" />
+    <Content Include="Demo\Photo\1198495359687708c2o.jpg" />
+    <Content Include="Demo\Photo\11984953635e95ae4do.jpg" />
+    <Content Include="Demo\Photo\1198495366719b2203o.jpg" />
+    <Content Include="Demo\Photo\1198495370707bef82o.jpg" />
+    <Content Include="Demo\Photo\11984953727234dbf0o.jpg" />
+    <Content Include="Demo\Photo\1198495373740fc827o.jpg" />
+    <Content Include="Demo\Photo\11984953753972027eo.jpg" />
+    <Content Include="Demo\Photo\1198495377779fca2fo.jpg" />
+    <Content Include="Demo\Photo\11984953796c3c3220o.jpg" />
+    <Content Include="Demo\Photo\1198495383c7694fd8o.jpg" />
+    <Content Include="Demo\Photo\1198495388ecb95144o.jpg" />
+    <Content Include="Demo\Pure0.6.0\grids-responsive-min.css" />
+    <Content Include="Demo\Pure0.6.0\grids-responsive-old-ie-min.css" />
+    <Content Include="Demo\Pure0.6.0\pure-extend.css" />
+    <Content Include="Demo\Pure0.6.0\pure-min.css" />
+    <Content Include="Demo\setup.html" />
+    <Content Include="Demo\table01.html" />
+    <Content Include="Demo\test.html" />
+    <Content Include="Demo\Tool\tool_1.png" />
+    <Content Include="Demo\Tool\tool_10.png" />
+    <Content Include="Demo\Tool\tool_2.png" />
+    <Content Include="Demo\Tool\tool_3.png" />
+    <Content Include="Demo\Tool\tool_4.png" />
+    <Content Include="Demo\Tool\tool_5.png" />
+    <Content Include="Demo\Tool\tool_6.png" />
+    <Content Include="Demo\Tool\tool_7.png" />
+    <Content Include="Demo\Tool\tool_8.png" />
+    <Content Include="Demo\Tool\tool_9.png" />
+    <Content Include="Photo\1198495347bb2d237fo.jpg" />
+    <Content Include="Photo\1198495359687708c2o.jpg" />
+    <Content Include="Photo\11984953635e95ae4do.jpg" />
+    <Content Include="Photo\1198495366719b2203o.jpg" />
+    <Content Include="Photo\1198495370707bef82o.jpg" />
+    <Content Include="Photo\11984953727234dbf0o.jpg" />
+    <Content Include="Photo\1198495373740fc827o.jpg" />
+    <Content Include="Photo\11984953753972027eo.jpg" />
+    <Content Include="Photo\1198495377779fca2fo.jpg" />
+    <Content Include="Photo\11984953796c3c3220o.jpg" />
+    <Content Include="Photo\1198495383c7694fd8o.jpg" />
+    <Content Include="Photo\1198495388ecb95144o.jpg" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Demo\Admin\img\" />
+    <Folder Include="File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\AppSettings.config" />
+    <Content Include="Configuration\autofac.config" />
+    <Content Include="Configuration\PowerConfig.config" />
+    <Content Include="Configuration\SiteConfig.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cactus.Common\Cactus.Common.csproj">
+      <Project>{3de44c87-8f84-4595-b588-ac6b0a5af8fe}</Project>
+      <Name>Cactus.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.Controllers\Cactus.Controllers.csproj">
+      <Project>{4dd2ca28-db22-44ee-8780-3835abcce44c}</Project>
+      <Name>Cactus.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.IService\Cactus.IService.csproj">
+      <Project>{ccfd427b-78c8-4c3f-a235-e376373caf33}</Project>
+      <Name>Cactus.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.Model\Cactus.Model.csproj">
+      <Project>{a0b12f00-f361-4002-abbd-5186749e218f}</Project>
+      <Name>Cactus.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.MSSQLService\Cactus.MSSQLService.csproj">
+      <Project>{4c19174d-41b2-4be6-946f-d87a2cb88a84}</Project>
+      <Name>Cactus.MSSQLService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.MySQLService\Cactus.MySQLService.csproj">
+      <Project>{ac759ac7-dcce-4582-a908-f0ef54adf4e5}</Project>
+      <Name>Cactus.MySQLService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cactus.SQLiteService\Cactus.SQLiteService.csproj">
+      <Project>{7e94e3d9-f98f-4087-af34-bd40642ee2dc}</Project>
+      <Name>Cactus.SQLiteService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\404.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\500.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Demo\Font-Awesome-4.5.0\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AdminLogin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\fontawesome-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\fontawesome-webfont.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Font-Awesome-4.5.0\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Detail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\_MenuBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\RoleList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\SysIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\RoleAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\RoleUpdate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\SysImage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\CacheManage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\CenterUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\CenterAlterPwd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\CenterAlterFace.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\CenterAlterInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\UserList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\UserUpdate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\UserAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\UserAlterFace.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\wangEditor-2.0.1\css\fonts\icomoon.eot" />
+    <Content Include="Content\wangEditor-2.0.1\css\fonts\icomoon.ttf" />
+    <Content Include="Content\wangEditor-2.0.1\css\fonts\icomoon.woff" />
+    <Content Include="Content\wangEditor-2.0.1\css\wangEditor.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Sys\UserInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Blog\FileManage.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54326/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
